@@ -67,6 +67,8 @@ CREATE TABLE IF NOT EXISTS "institution"(
 CREATE TABLE IF NOT EXISTS "emergency" (
     "id_emergency" SERIAL NOT NULL,
     "emergency_details" VARCHAR(500) NOT NULL,
+    "requirements" VARCHAR(200) NOT NULL,
+    "status" VARCHAR(20) NOT NULL,
     PRIMARY KEY ("id_emergency"),
     CONSTRAINT "fk_institution"
         FOREIGN KEY ("id_institution")
