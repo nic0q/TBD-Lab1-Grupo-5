@@ -31,10 +31,10 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
         }
     }
     @Override
-    public List<Voluntary> getVoluntaryById(int id) {
+    public List<Voluntary> getVoluntaryByRut(String rut) {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM \"Voluntary\" WHERE id_voluntary = :id")
-                    .addParameter("id", id)
+            return conn.createQuery("SELECT * FROM \"Voluntary\" WHERE rut_voluntary = :rut")
+                    .addParameter("rut", rut)
                     .executeAndFetch(Voluntary.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -44,12 +44,11 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
     @Override
     public Voluntary createVoluntary(Voluntary voluntary){
       try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO \"Voluntary\" (name,age,inventory,health,avalaible)"+
-            "values (:voluntaryName,:voluntaryAge,:voluntaryInventory,:voluntaryHealth,:voluntaryAvalaible)")
+            conn.createQuery("INSERT INTO \"Voluntary\" (rut,name,age,avalaible)"+
+            "values (:voluntaryRut,:voluntaryName,:voluntaryAge,:voluntaryAvalaible)")
+                    .addParameter("voluntaryRut", voluntary.getRut())
                     .addParameter("voluntaryName", voluntary.getName())
                     .addParameter("voluntaryAge", voluntary.getAge())
-                    .addParameter("voluntaryInventory", voluntary.getInventory())
-                    .addParameter("voluntaryHealth", voluntary.getHealth())
                     .addParameter("voluntaryAvalaible", voluntary.getAvalaible())
                     .executeUpdate().getKey();
             return voluntary;
@@ -61,13 +60,11 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
     @Override
     public boolean editVoluntary(Voluntary voluntary) {
         try(Connection conn = sql2o.open()){
-                conn.createQuery("UPDATE \"Voluntary\" SET name = :voluntaryName, age = :voluntaryAge, inventory = :voluntaryInventory, health = :voluntaryHealth, avalaible = :voluntaryAvalaible WHERE id_voluntary = :voluntaryId")
+                conn.createQuery("UPDATE \"Voluntary\" SET rut = :voluntaryRut, name = :voluntaryName, age = :voluntaryAge, avalaible = :voluntaryAvalaible WHERE rut = :voluntaryRut")
+                        .addParameter("voluntaryRut", voluntary.getRut())
                         .addParameter("voluntaryName", voluntary.getName())
                         .addParameter("voluntaryAge", voluntary.getAge())
-                        .addParameter("voluntaryInventory", voluntary.getInventory())
                         .addParameter("voluntaryAvalaible", voluntary.getAvalaible())
-                        .addParameter("voluntaryHealth", voluntary.getHealth())
-                        .addParameter("voluntaryId", voluntary.getId())
                         .executeUpdate();
                 return true;
             }catch(Exception e){

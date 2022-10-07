@@ -10,7 +10,7 @@ public interface VoluntaryRepository {
 
   public Voluntary createVoluntary(Voluntary voluntary);
 
-  public List<Voluntary> getVoluntaryById(int id);
+  public List<Voluntary> getVoluntaryByRut(String rut);
 
   public boolean deleteVoluntary(int id);
 
