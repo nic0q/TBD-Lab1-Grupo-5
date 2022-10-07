@@ -14,13 +14,18 @@ CREATE DATABASE "VoluntariadoDB"
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
--------------------------------------------------------
---Table "voluntary"
--------------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS "voluntary" (
     "rut" VARCHAR(10) NOT NULL,
     "name" VARCHAR(45) NOT NULL,
     "age" INT NOT NULL,
+	"avalaible" BOOLEAN NOT NULL,
+    PRIMARY KEY ("rut"));
+CREATE TABLE IF NOT EXISTS "voluntary" (
+    "rut" VARCHAR(10) NOT NULL,
+    "name" VARCHAR(45) NOT NULL,
+    "age" INT NOT NULL,
+	"avalaible" BOOLEAN NOT NULL,
     PRIMARY KEY ("rut"));
 
 -------------------------------------------------------
@@ -32,25 +37,26 @@ CREATE TABLE IF NOT EXISTS "hability" (
     "description" VARCHAR(150) NOT NULL,
     PRIMARY KEY ("id_hability")
 );
-
+SELECT * FROM "voluntary";
 -------------------------------------------------------
 --Table "vol_hability"
 -------------------------------------------------------
 CREATE TABLE IF NOT EXISTS "vol_hability" (
     "id_vol_hability" SERIAL NOT NULL,
+	"voluntary_rut" VARCHAR(10),
+	"id_hability" int,
     PRIMARY KEY ("id_vol_hability"),
     CONSTRAINT "fk_voluntary"
-        FOREIGN KEY ("rut")
+        FOREIGN KEY ("voluntary_rut")
         REFERENCES "voluntary" ("rut")
         ON DELETE NO ACTION
         ON UPDATE NO ACTION,
-    CONSTRAINT "fk_hability"
+	CONSTRAINT "fk_hability"
         FOREIGN KEY ("id_hability")
         REFERENCES "hability" ("id_hability")
         ON DELETE NO ACTION
-        ON UPDATE NO ACTION
+        ON UPDATE NO ACTION	
 );
-
 -------------------------------------------------------
 --Table "institution"
 -------------------------------------------------------
@@ -68,6 +74,7 @@ CREATE TABLE IF NOT EXISTS "emergency" (
     "id_emergency" SERIAL NOT NULL,
     "emergency_details" VARCHAR(500) NOT NULL,
     "requirements" VARCHAR(200) NOT NULL,
+	"id_institution" int,
     "status" VARCHAR(20) NOT NULL,
     PRIMARY KEY ("id_emergency"),
     CONSTRAINT "fk_institution"
@@ -76,12 +83,13 @@ CREATE TABLE IF NOT EXISTS "emergency" (
         ON DELETE NO ACTION
         ON UPDATE NO ACTION
 );
-  
 -------------------------------------------------------
 --Table "eme_hability"
 -------------------------------------------------------
 CREATE TABLE IF NOT EXISTS "eme_hability" (
     "id_eme_hability" SERIAL NOT NULL,
+	"id_hability" int,
+	"id_emergency" int,
     PRIMARY KEY ("id_eme_hability"),
     CONSTRAINT "fk_emergency"
         FOREIGN KEY ("id_emergency")
@@ -94,7 +102,6 @@ CREATE TABLE IF NOT EXISTS "eme_hability" (
         ON DELETE NO ACTION
         ON UPDATE NO ACTION
 );
-
 -------------------------------------------------------
 --Table "state_task"
 -------------------------------------------------------
@@ -110,6 +117,8 @@ CREATE TABLE IF NOT EXISTS "state_task"(
 CREATE TABLE IF NOT EXISTS "task"(
     "id_task" SERIAL NOT NULL,
     "description" VARCHAR(300),
+	"id_emergency" int,
+	"id_state_task" int,
     PRIMARY KEY ("id_task"),
     CONSTRAINT "fk_emergency"
         FOREIGN KEY ("id_emergency")
@@ -127,6 +136,8 @@ CREATE TABLE IF NOT EXISTS "task"(
 -------------------------------------------------------
 CREATE TABLE IF NOT EXISTS "task_hability"(
     "id_task_hability" SERIAL NOT NULL,
+	"id_eme_hability" int,
+	"id_task" int,
     PRIMARY KEY ("id_task_hability"),
     CONSTRAINT "fk_task"
         FOREIGN KEY ("id_task")
@@ -134,17 +145,18 @@ CREATE TABLE IF NOT EXISTS "task_hability"(
         ON DELETE NO ACTION
         ON UPDATE NO ACTION,
     CONSTRAINT "fk_hability"
-        FOREIGN KEY ("id_hability")
-        REFERENCES "hability" ("id_hability")
+        FOREIGN KEY ("id_eme_hability")
+        REFERENCES "eme_hability" ("id_eme_hability")
         ON DELETE NO ACTION
         ON UPDATE NO ACTION
-); 
-
+);
 -------------------------------------------------------
 --Table "ranking" -------------------------------------
 -------------------------------------------------------
 CREATE TABLE IF NOT EXISTS "ranking"(
     "id_ranking" SERIAL NOT NULL,
+	"id_task" int,
+	"rut_voluntary" VARCHAR(10) NOT NULL,
     PRIMARY KEY ("id_ranking"),
     CONSTRAINT "fk_task"
         FOREIGN KEY ("id_task")
@@ -152,9 +164,8 @@ CREATE TABLE IF NOT EXISTS "ranking"(
         ON DELETE NO ACTION
         ON UPDATE NO ACTION,
     CONSTRAINT "fk_voluntary"
-        FOREIGN KEY ("rut")
+        FOREIGN KEY ("rut_voluntary")
         REFERENCES "voluntary" ("rut")
         ON DELETE NO ACTION
         ON UPDATE NO ACTION
 );
-
