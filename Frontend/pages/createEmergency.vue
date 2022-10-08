@@ -35,8 +35,8 @@
                 </option>
               </select>
             </div>
-            <button type="button" v-on:click="sendData()">
-              aasdasd
+            <button type="button" class="btn btn-primary" v-on:click="sendData()">
+              Ingresar Emergencia
             </button>
           </div>
         </div>
