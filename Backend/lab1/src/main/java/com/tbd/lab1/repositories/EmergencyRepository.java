@@ -7,4 +7,6 @@ import java.util.List;
 public interface EmergencyRepository {
 
     public List<Emergency> getAllEmergencies();
+
+    public List<Emergency> getEmergencyById(int id);
 }

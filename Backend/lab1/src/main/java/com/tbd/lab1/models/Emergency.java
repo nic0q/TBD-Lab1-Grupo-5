@@ -5,7 +5,7 @@ public class Emergency{
     private String emergency_details;
     private String requirements;
     private String status;
-    private Integer id_institucion;
+    private Integer id_institution;
 
 
     public Integer getId_emergency() {
@@ -40,12 +40,12 @@ public class Emergency{
         this.status = status;
     }
 
-    public Integer getId_institucion() {
-        return id_institucion;
+    public Integer getId_institution() {
+        return id_institution;
     }
 
-    public void setId_institucion(Integer id_institucion) {
-        this.id_institucion = id_institucion;
+    public void setId_institution(Integer id_institution) {
+        this.id_institution = id_institution;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class Emergency{
                 ", emergency_details='" + emergency_details + '\'' +
                 ", requirements='" + requirements + '\'' +
                 ", status='" + status + '\'' +
-                ", id_institucion=" + id_institucion +
+                ", id_institution=" + id_institution +
                 '}';
     }
 }
