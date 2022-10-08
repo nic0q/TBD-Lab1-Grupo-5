@@ -65,10 +65,9 @@ public class EmergencyRepositoryImp implements EmergencyRepository {
     
     public Emergency createEmergency(Emergency emergency){
         try(Connection conn = sql2o.open()){
-            conn.createQuery("INSERT INTO \"Emergency\" (emergency_details, requirements, id_institution, status)" +
-                    "values (:emergencyDetails, :emergencyRequirements, :emergencyInstitution, :emergencyStatus)")
+            conn.createQuery("INSERT INTO \"Emergency\" (emergency_details, id_institution, status)" +
+                    "values (:emergencyDetails, :emergencyInstitution, :emergencyStatus)")
                     .addParameter("emergencyDetails", emergency.getEmergency_details())
-                    .addParameter("emergencyRequirements", emergency.getRequirements())
                     .addParameter("emergencyInstitution", emergency.getId_institution())
                     .addParameter("emergencyStatus", emergency.getStatus())
                     .executeUpdate().getKey();
@@ -90,9 +89,8 @@ public class EmergencyRepositoryImp implements EmergencyRepository {
     @Override
     public boolean editEmergency(Emergency emergency){
         try(Connection conn = sql2o.open()){
-            conn.createQuery("UPDATE \"Emergency\" SET emergency_details = :emergencyDetails, requirements = :emergencyRequirements, id_institution = :emergencyInstitution, status = :emergencyStatus WHERE id_emergency = :emergencyId")
+            conn.createQuery("UPDATE \"Emergency\" SET emergency_details = :emergencyDetails, id_institution = :emergencyInstitution, status = :emergencyStatus WHERE id_emergency = :emergencyId")
                     .addParameter("emergencyDetails", emergency.getEmergency_details())
-                    .addParameter("emergencyRequirements", emergency.getRequirements())
                     .addParameter("emergencyInstitution", emergency.getId_institution())
                     .addParameter("emergencyStatus", emergency.getStatus())
                     .addParameter("emergencyId", emergency.getId_emergency())

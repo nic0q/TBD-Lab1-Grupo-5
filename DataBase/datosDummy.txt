@@ -61,11 +61,11 @@ INSERT INTO "Institution" (name, name_coordinator) VALUES ('Bomberos', 'Xavi');
 -- 5. Emergency (5)
 -------------------------------------------------------
 
-INSERT INTO "Emergency" (emergency_details, requirements, id_institution, status) VALUES ('Terremoto', 'requirement1', '1', 'Sin Completar');
-INSERT INTO "Emergency" (emergency_details, requirements, id_institution, status) VALUES ('Incendio', 'requirement2', '2', 'Sin Completar');
-INSERT INTO "Emergency" (emergency_details, requirements, id_institution, status) VALUES ('Inundacion', 'requirement3', '3', 'Sin Completar');
-INSERT INTO "Emergency" (emergency_details, requirements, id_institution, status) VALUES ('Huracan', 'requirement4', '4', 'Sin Completar');
-INSERT INTO "Emergency" (emergency_details, requirements, id_institution, status) VALUES ('Tsunami', 'requirement5', '5', 'Sin Completar');
+INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Terremoto', '1', 'Sin Completar');
+INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Incendio', '2', 'Sin Completar');
+INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Inundacion', '3', 'Sin Completar');
+INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Huracan', '4', 'Sin Completar');
+INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Tsunami', '5', 'Sin Completar');
 
 -------------------------------------------------------
 -- 6. eme_ability (10)
