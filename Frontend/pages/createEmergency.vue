@@ -35,7 +35,7 @@
                 </option>
               </select>
             </div>
-            <button type="button" class="btn btn-primary" v-on:click="sendData()">
+            <button type="button" class="btn btn-primary col text-center" v-on:click="sendData()">
               Ingresar Emergencia
             </button>
           </div>
@@ -78,16 +78,8 @@ export default {
       }
     },
     sendData: function () {
-      // try {
-      //   let response = await this.$axios.post("/emergencies", this.formData);
-      //   console.log(response);
-      // } catch (error) {
-      //   console.log("error", error);
       console.log(this.formData)
     },
-    // created: function () {
-    //   getInstitutions();
-    // }
   },
 };
 </script>
