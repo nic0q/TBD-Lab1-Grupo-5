@@ -17,9 +17,8 @@ public class TaskAbilityRepositoryImp implements TaskAbilityRepository{
     @Override
     public TaskAbility createTaskAbility(TaskAbility taskAbility) {
         try(Connection conn = sql2o.open()){
-            conn.createQuery("INSERT INTO \"Task_ability\" (id_task_ability, id_task, id_eme_ability) "+
-                            "VALUES (:id_task_ability, :id_task, :id_ability)")
-                    .addParameter("id_task_ability", taskAbility.getId_task_ability())
+            conn.createQuery("INSERT INTO \"Task_ability\" (id_task, id_eme_ability) "+
+                            "VALUES (:id_task, :id_ability)")
                     .addParameter("id_task", taskAbility.getId_task())
                     .addParameter("id_eme_ability", taskAbility.getId_eme_ability())
                     .executeUpdate().getKey();
@@ -56,7 +55,7 @@ public class TaskAbilityRepositoryImp implements TaskAbilityRepository{
     @Override
     public boolean editTaskAbility(TaskAbility taskAbility){
         try(Connection conn = sql2o.open()){
-            conn.createQuery("UPDATE \"Task_ability\" SET id_task_ability = :taskHabilityIdTaskAbility, id_task = :taskAbilityIdTask, id_eme_ability = :taskAbilityIdEmeHability WHERE id_task_ability = :taskHabilityIdTaskAbility")
+            conn.createQuery("UPDATE \"Task_ability\" SET id_task = :taskAbilityIdTask, id_eme_ability = :taskAbilityIdEmeHability WHERE id_task_ability = :taskHabilityIdTaskAbility")
                     .addParameter("id_task_ability", taskAbility.getId_task_ability())
                     .addParameter("id_task", taskAbility.getId_task())
                     .addParameter("id_eme_ability", taskAbility.getId_eme_ability())
