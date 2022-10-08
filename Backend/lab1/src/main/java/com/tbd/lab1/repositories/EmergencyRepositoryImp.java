@@ -57,11 +57,12 @@ public class EmergencyRepositoryImp implements EmergencyRepository {
     @Override
     public boolean editEmergency(Emergency emergency){
         try(Connection conn = sql2o.open()){
-            conn.createQuery("UPDATE \"Emergency\" SET emergency_details = :emergencyDetails, requirements = :emergencyRequirements, id_institution = :emergencyInstitution, status = :emergencyStatus")
+            conn.createQuery("UPDATE \"Emergency\" SET emergency_details = :emergencyDetails, requirements = :emergencyRequirements, id_institution = :emergencyInstitution, status = :emergencyStatus WHERE id_emergency = emergencyId")
                     .addParameter("emergencyDetails", emergency.getEmergency_details())
                     .addParameter("emergencyRequirements", emergency.getRequirements())
                     .addParameter("emergencyInstitution", emergency.getId_institution())
                     .addParameter("emergencyStatus", emergency.getStatus())
+                    .addParameter("emergencyId", emergency.getId_emergency())
                     .executeUpdate();
             return true;
         }catch(Exception e){
