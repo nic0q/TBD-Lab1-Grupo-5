@@ -22,4 +22,19 @@ public class InstitutionService {
     public List<Institution> getInstitutionById(@PathVariable("id") int id){
         return institutionRepository.getInstitutionById(id);
     }
+
+    @PostMapping("/institutions")
+    public Institution createInstitution(@RequestBody Institution institution){
+        return institutionRepository.createInstitution(institution);
+    }
+
+    @PutMapping("/institutions")
+    public boolean editInstitution(@RequestBody Institution institution){
+        return institutionRepository.editInstitution(institution);
+    }
+
+    @DeleteMapping("/institutions/{id}")
+    public boolean deleteInstitution(@PathVariable("id") int id){
+        return institutionRepository.deleteInstitution(id);
+    }
 }
