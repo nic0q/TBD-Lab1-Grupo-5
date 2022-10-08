@@ -24,19 +24,11 @@
                 </option>
               </select>
             </div>
-            <div class="form-group">
-              <div>
-                <label>Requisitos</label> 
-              </div>
-              <select class="form-select" v-model="formData.requirements" aria-label="Default select example" v-on:click="getAbilities()">
-                <option value="">Seleccione</option>
-                <option v-for="(ability, index) in abilities" :value="ability.id_ability" :key="index">
-                  {{ability.name_ability}}
-                </option>
-              </select>
-            </div>
-            <button type="button" class="btn btn-primary col text-center" v-on:click="sendData()">
+            <button type="button" class="btn btn-primary" v-on:click="sendData()">
               Ingresar Emergencia
+            </button>
+            <button v-on:click="sendToEmeAbility()" type="button" class="btn btn-primary">
+              Ingresar Requerimientos
             </button>
           </div>
         </div>
@@ -45,17 +37,18 @@
   </form>
 </template>
 <script>
+
 export default {
   data() {  
     return {
       formData: {
         emergency_details: "",
-        requirements: "",
         status: "Activo",
         id_institution: "",
       },
       institutions: [],
       abilities: [],
+      id_emergency: "",
     };
   },
   methods: {
@@ -78,7 +71,22 @@ export default {
       }
     },
     sendData: function () {
-      console.log(this.formData)
+       try {
+         let response = this.$axios.post("/emergencies", this.formData);
+         console.log(response);
+       } catch (error) {
+         console.log("error", error);
+       }
+      //console.log(this.formData)
+    },
+    getIdEmergency: function () {
+      // SACAR EL ID
+    },
+    // created: function () {
+    //   getInstitutions();
+    // }
+    sendToEmeAbility: function () {
+      this.$router.push({ name: "createEmeAbility", params: { id_emergency: this.id_emergency } });
     },
   },
 };
