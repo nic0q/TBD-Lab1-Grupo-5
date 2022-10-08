@@ -44,7 +44,7 @@ public class TaskRepositoryImp implements TaskRepository{
     @Override
     public Task createTask(Task task){
         try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO \"Task\" (description,fk_emergency,fk_state_task)"+
+            conn.createQuery("INSERT INTO \"Task\" (description,fk_emergency,fk_state_task)"+
                             "values (:taskDescription,:taskFkEmergency,:taskFkState)")
                     .addParameter("taskDescription", task.getDescription())
                     .addParameter("taskFkEmergency", task.getFk_emergency())
