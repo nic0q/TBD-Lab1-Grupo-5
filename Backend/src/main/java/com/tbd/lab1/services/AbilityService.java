@@ -16,33 +16,33 @@ public class AbilityService {
     }
 
     @GetMapping("/abilities")
-    public List<Ability> getAllHabilities(){
-        return abilityRepository.getAllHabilities();
+    public List<Ability> getAllAbilities(){
+        return abilityRepository.getAllAbilities();
     }
 
     @GetMapping("abilities/{id}")
-    public List<Ability> getHabilityById(@PathVariable("id") Integer id){
-        return abilityRepository.getHabilityById(id);
+    public List<Ability> getAbilityById(@PathVariable("id") Integer id){
+        return abilityRepository.getAbilityById(id);
     }
 
     @PostMapping("/abilities")
     @ResponseBody
-    public Ability createHability(@RequestBody Ability ability){
-        Ability result = abilityRepository.createHability(ability);
+    public Ability createAbility(@RequestBody Ability ability){
+        Ability result = abilityRepository.createAbility(ability);
         return result;
     }
 
     @PutMapping("/abilities/{id}")
-    public String editHability(@PathVariable("id") int id, @RequestBody Ability ability){
+    public String editAbility(@PathVariable("id") int id, @RequestBody Ability ability){
         ability.setId_ability(id);
-        boolean result = abilityRepository.editHability(ability);
+        boolean result = abilityRepository.editAbility(ability);
         if(result) return "Habilidad editada";
         else return "Error al editar la habilidad";
     }
 
     @DeleteMapping("/abilities/{id}")
     public String deleteAbility(@PathVariable("id") int id){
-        boolean result = abilityRepository.deleteHability(id);
+        boolean result = abilityRepository.deleteAbility(id);
         if(result) return "Habilidad eliminada";
         else return "Error al eliminar la habilidad";
     }

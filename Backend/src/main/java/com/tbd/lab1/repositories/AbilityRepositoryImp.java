@@ -13,22 +13,20 @@ public class AbilityRepositoryImp implements AbilityRepository {
 
     @Autowired
     private Sql2o sql2o;
-
     @Override
-    public List<Ability> getAllHabilities() {
+    public List<Ability> getAllAbilities() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM \"Hability\"").
+            return conn.createQuery("SELECT * FROM \"Ability\"").
                     executeAndFetch(Ability.class);
         } catch(Exception e){
             System.out.println(e.getMessage());
             return null;
         }
     }
-
     @Override
-    public List<Ability> getHabilityById(Integer id) {
+    public List<Ability> getAbilityById(Integer id) {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM \"Hability\" WHERE id_hability = :id")
+            return conn.createQuery("SELECT * FROM \"Ability\" WHERE id_ability = :id")
                     .addParameter("id",id)
                     .executeAndFetch(Ability.class);
         }catch(Exception e){
@@ -36,14 +34,13 @@ public class AbilityRepositoryImp implements AbilityRepository {
             return null;
         }
     }
-
     @Override
-    public Ability createHability(Ability ability) {
+    public Ability createAbility(Ability ability) {
         try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO \"Hability\" (name, description) " +
-                            "values (:name, :description")
-                    .addParameter("name", ability.getName_ability())
-                    .addParameter("description", ability.getDescription_ability())
+            conn.createQuery("INSERT INTO \"Ability\" (name_ability, description_ability) " +
+            "values (:name_ability,:description_ability")
+                    .addParameter("name_ability", ability.getName_ability())
+                    .addParameter("description_ability", ability.getDescription_ability())
                     .executeUpdate().getKey();
             return ability;
         } catch(Exception e){
@@ -51,14 +48,13 @@ public class AbilityRepositoryImp implements AbilityRepository {
             return null;
         }
     }
-
     @Override
-    public boolean editHability(Ability ability) {
+    public boolean editAbility(Ability ability) {
         try(Connection conn = sql2o.open()){
-            conn.createQuery("UPDATE \"Hability\" SET name = :name, description = :description WHERE id_hability = :id_hability")
-                    .addParameter("name", ability.getName_ability())
-                    .addParameter("description", ability.getDescription_ability())
-                    .addParameter("id_hability", ability.getId_ability())
+            conn.createQuery("UPDATE \"Ability\" SET name_ability = :name_ability, description_ability = :description_ability WHERE id_ability = :id_ability")
+                    .addParameter("name_ability", ability.getName_ability())
+                    .addParameter("description_ability", ability.getDescription_ability())
+                    .addParameter("id_ability", ability.getId_ability())
                     .executeUpdate();
             return true;
         }catch(Exception e){
@@ -66,15 +62,14 @@ public class AbilityRepositoryImp implements AbilityRepository {
             return false;
         }
     }
-
     @Override
-    public boolean deleteHability(Integer id) {
-        int deletedHability;
+    public boolean deleteAbility(Integer id) {
+        int deletedAbility;
         try(Connection conn = sql2o.open()){
-            deletedHability = conn.createQuery("DELETE FROM \"Hability\" WHERE id_hability = :id")
+            deletedAbility = conn.createQuery("DELETE FROM \"Ability\" WHERE id_ability = :id")
                     .addParameter("id", id)
                     .executeUpdate().getResult();
         }
-        return deletedHability == 1;
+        return deletedAbility == 1;
     }
 }

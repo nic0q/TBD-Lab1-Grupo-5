@@ -2,7 +2,6 @@
 -- Crear VoluntariadoDB
 -- Database: VoluntariadoDB
 -------------------------------------------------------
-
 DROP DATABASE IF EXISTS "VoluntariadoDB";
 
 CREATE DATABASE "VoluntariadoDB"
@@ -26,30 +25,30 @@ CREATE TABLE IF NOT EXISTS "Voluntary" (
     PRIMARY KEY ("rut"));
 
 -------------------------------------------------------
---Table "hability"
+--Table "ability"
 -------------------------------------------------------
-CREATE TABLE IF NOT EXISTS "Hability" (
-    "id_hability" SERIAL NOT NULL,
-    "name" VARCHAR(45) NOT NULL,
-    "description" VARCHAR(150) NOT NULL,
-    PRIMARY KEY ("id_hability")
+CREATE TABLE IF NOT EXISTS "Ability" (
+    "id_ability" SERIAL NOT NULL,
+    "name_ability" VARCHAR(45) NOT NULL,
+    "description_ability" VARCHAR(150) NOT NULL,
+    PRIMARY KEY ("id_ability")
 );
 -------------------------------------------------------
---Table "vol_hability"
+--Table "vol_ability"
 -------------------------------------------------------
-CREATE TABLE IF NOT EXISTS "Vol_hability" (
-    "id_vol_hability" SERIAL NOT NULL,
+CREATE TABLE IF NOT EXISTS "Vol_ability" (
+    "id_vol_ability" SERIAL NOT NULL,
 	"voluntary_rut" VARCHAR(10),
-	"id_hability" int,
-    PRIMARY KEY ("id_vol_hability"),
+	"id_ability" int,
+    PRIMARY KEY ("id_vol_ability"),
     CONSTRAINT "fk_voluntary"
         FOREIGN KEY ("voluntary_rut")
         REFERENCES "Voluntary" ("rut")
         ON DELETE NO ACTION
         ON UPDATE NO ACTION,
-	CONSTRAINT "fk_hability"
-        FOREIGN KEY ("id_hability")
-        REFERENCES "Hability" ("id_hability")
+	CONSTRAINT "fk_ability"
+        FOREIGN KEY ("id_ability")
+        REFERENCES "Ability" ("id_ability")
         ON DELETE NO ACTION
         ON UPDATE NO ACTION	
 );
@@ -62,7 +61,6 @@ CREATE TABLE IF NOT EXISTS "Institution"(
     "name_coordinator" VARCHAR(50) NOT NULL,
     PRIMARY KEY ("id_institution")
 );
-
 -------------------------------------------------------
 --Table "emergency"
 -------------------------------------------------------
@@ -80,21 +78,21 @@ CREATE TABLE IF NOT EXISTS "Emergency" (
         ON UPDATE NO ACTION
 );
 -------------------------------------------------------
---Table "eme_hability"
+--Table "eme_ability"
 -------------------------------------------------------
-CREATE TABLE IF NOT EXISTS "Eme_hability" (
-    "id_eme_hability" SERIAL NOT NULL,
-	"id_hability" int,
+CREATE TABLE IF NOT EXISTS "Eme_ability" (
+    "id_eme_ability" SERIAL NOT NULL,
+	"id_ability" int,
 	"id_emergency" int,
-    PRIMARY KEY ("id_eme_hability"),
+    PRIMARY KEY ("id_eme_ability"),
     CONSTRAINT "fk_emergency"
         FOREIGN KEY ("id_emergency")
         REFERENCES "Emergency" ("id_emergency")
         ON DELETE NO ACTION
         ON UPDATE NO ACTION,
     CONSTRAINT "fk_hability"
-        FOREIGN KEY ("id_hability")
-        REFERENCES "Hability" ("id_hability")
+        FOREIGN KEY ("id_ability")
+        REFERENCES "Ability" ("id_ability")
         ON DELETE NO ACTION
         ON UPDATE NO ACTION
 );
@@ -106,7 +104,6 @@ CREATE TABLE IF NOT EXISTS "State_task"(
     "state" BOOLEAN NOT NULL,
     PRIMARY KEY ("id_state_task")
 );
-
 -------------------------------------------------------
 --Table "task"
 -------------------------------------------------------
@@ -128,21 +125,21 @@ CREATE TABLE IF NOT EXISTS "Task"(
         ON UPDATE NO ACTION
 );
 -------------------------------------------------------
---Table "task_hability" -------------------------------
+--Table "task_ability" -------------------------------
 -------------------------------------------------------
-CREATE TABLE IF NOT EXISTS "Task_hability"(
-    "id_task_hability" SERIAL NOT NULL,
-	"id_eme_hability" int,
+CREATE TABLE IF NOT EXISTS "Task_ability"(
+    "id_task_ability" SERIAL NOT NULL,
+	"id_eme_ability" int,
 	"id_task" int,
-    PRIMARY KEY ("id_task_hability"),
+    PRIMARY KEY ("id_task_ability"),
     CONSTRAINT "fk_task"
         FOREIGN KEY ("id_task")
         REFERENCES "Task" ("id_task")
         ON DELETE NO ACTION
         ON UPDATE NO ACTION,
     CONSTRAINT "fk_hability"
-        FOREIGN KEY ("id_eme_hability")
-        REFERENCES "Eme_hability" ("id_eme_hability")
+        FOREIGN KEY ("id_eme_ability")
+        REFERENCES "Eme_ability" ("id_eme_ability")
         ON DELETE NO ACTION
         ON UPDATE NO ACTION
 );
