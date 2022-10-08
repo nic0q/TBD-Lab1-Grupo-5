@@ -6,7 +6,6 @@ package com.tbd.lab1.models;
 public class Emergency{
     private Integer id_emergency;
     private String emergency_details;
-    private String requirements;
     private String status;
     private Integer id_institution;
 
@@ -44,24 +43,6 @@ public class Emergency{
      */
     public void setEmergency_details(String emergency_details) {
         this.emergency_details = emergency_details;
-    }
-
-    
-    /** 
-     * Obtiene los requerimientos (string) de una Emergencia
-     * @return String
-     */
-    public String getRequirements() {
-        return requirements;
-    }
-
-    
-    /** 
-     * Modifica los requerimientos (string) de una Emergencia
-     * @param requirements
-     */
-    public void setRequirements(String requirements) {
-        this.requirements = requirements;
     }
 
     
@@ -110,7 +91,6 @@ public class Emergency{
         return "Emergency{" +
                 "id_emergency=" + id_emergency +
                 ", emergency_details='" + emergency_details + '\'' +
-                ", requirements='" + requirements + '\'' +
                 ", status='" + status + '\'' +
                 ", id_institution=" + id_institution +
                 '}';
