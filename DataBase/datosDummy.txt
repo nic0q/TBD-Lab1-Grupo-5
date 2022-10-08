@@ -1,0 +1,120 @@
+-------------------------------------------------------
+-- Datos Dummy
+-------------------------------------------------------
+-------------------------------------------------------
+-- 1. Voluntary (10)
+-------------------------------------------------------
+
+INSERT INTO "Voluntary" (rut, name, age, avalaible) VALUES ('1-9', 'Juan Perez', 20, true);
+INSERT INTO "Voluntary" (rut, name, age, avalaible) VALUES ('2-9', 'Pedro Gomez', 25, true);
+INSERT INTO "Voluntary" (rut, name, age, avalaible) VALUES ('3-9', 'Maria Lopez', 30, true);
+INSERT INTO "Voluntary" (rut, name, age, avalaible) VALUES ('4-9', 'Josefina Pinto', 35, true);
+INSERT INTO "Voluntary" (rut, name, age, avalaible) VALUES ('5-9', 'Carlos Silva', 40, true);
+INSERT INTO "Voluntary" (rut, name, age, avalaible) VALUES ('6-9', 'Maria Jose', 45, true);
+INSERT INTO "Voluntary" (rut, name, age, avalaible) VALUES ('7-9', 'Josefina Pinto', 50, true);
+INSERT INTO "Voluntary" (rut, name, age, avalaible) VALUES ('8-9', 'Carlos Silva', 55, true);
+INSERT INTO "Voluntary" (rut, name, age, avalaible) VALUES ('9-9', 'Maria Jose', 60, true);
+INSERT INTO "Voluntary" (rut, name, age, avalaible) VALUES ('10-9', 'Josefina Pinto', 65, true);
+
+-------------------------------------------------------
+-- 2. Ability (10)
+-------------------------------------------------------
+
+INSERT INTO "Ability" (name_ability, description_ability) VALUES ('resistencia', 'se requiere resistencia para escalar');
+INSERT INTO "Ability" (name_ability, description_ability) VALUES ('rescate', 'se requiere rescatar para asistir a personas');
+INSERT INTO "Ability" (name_ability, description_ability) VALUES ('natacion', 'se requiere nadar para asistir lugares marinos o fluviales');
+INSERT INTO "Ability" (name_ability, description_ability) VALUES ('cocinar', 'se requiere cocinar para alimentar a personas');
+INSERT INTO "Ability" (name_ability, description_ability) VALUES ('conducir', 'se requiere conducir para trasladar personas');
+INSERT INTO "Ability" (name_ability, description_ability) VALUES ('manejo de maquinaria', 'se requiere manejar maquinaria para realizar trabajos');
+INSERT INTO "Ability" (name_ability, description_ability) VALUES ('fuerza', 'se requiere fuerza para levantar objetos');
+INSERT INTO "Ability" (name_ability, description_ability) VALUES ('velocidad', 'se requiere velocidad para realizar trabajos');
+INSERT INTO "Ability" (name_ability, description_ability) VALUES ('comprension', 'se requiere comprension para hablar con personas afectadas');
+INSERT INTO "Ability" (name_ability, description_ability) VALUES ('agilidad', 'se requiere agilidad para realizar trabajos');
+
+-------------------------------------------------------
+-- 3. vol_ability (10)
+-------------------------------------------------------
+
+INSERT INTO "Vol_ability" (voluntary_rut, id_ability) VALUES ('1-9', 1);
+INSERT INTO "Vol_ability" (voluntary_rut, id_ability) VALUES ('2-9', 2);
+INSERT INTO "Vol_ability" (voluntary_rut, id_ability) VALUES ('3-9', 3);
+INSERT INTO "Vol_ability" (voluntary_rut, id_ability) VALUES ('4-9', 4);
+INSERT INTO "Vol_ability" (voluntary_rut, id_ability) VALUES ('5-9', 5);
+INSERT INTO "Vol_ability" (voluntary_rut, id_ability) VALUES ('6-9', 6);
+INSERT INTO "Vol_ability" (voluntary_rut, id_ability) VALUES ('7-9', 7);
+INSERT INTO "Vol_ability" (voluntary_rut, id_ability) VALUES ('8-9', 8);
+INSERT INTO "Vol_ability" (voluntary_rut, id_ability) VALUES ('9-9', 9);
+INSERT INTO "Vol_ability" (voluntary_rut, id_ability) VALUES ('10-9', 10);
+
+-------------------------------------------------------
+-- 4. Institution (6)
+-------------------------------------------------------
+
+INSERT INTO "Institution" (name, name_coordinator) VALUES ('Hospital', 'Banana');
+INSERT INTO "Institution" (name, name_coordinator) VALUES ('Escuela', 'Vixo');
+INSERT INTO "Institution" (name, name_coordinator) VALUES ('Casa hogar', 'John');
+INSERT INTO "Institution" (name, name_coordinator) VALUES ('Marina Armada', 'Vene');
+INSERT INTO "Institution" (name, name_coordinator) VALUES ('Policia', 'Forkfan');
+INSERT INTO "Institution" (name, name_coordinator) VALUES ('Bomberos', 'Xavi');
+
+-------------------------------------------------------
+-- 5. Emergency (5)
+-------------------------------------------------------
+
+INSERT INTO "Emergency" (emergency_details, requirements, id_institution, status) VALUES ('Terremoto', 'requirement1', '1', 'Sin Completar');
+INSERT INTO "Emergency" (emergency_details, requirements, id_institution, status) VALUES ('Incendio', 'requirement2', '2', 'Sin Completar');
+INSERT INTO "Emergency" (emergency_details, requirements, id_institution, status) VALUES ('Inundacion', 'requirement3', '3', 'Sin Completar');
+INSERT INTO "Emergency" (emergency_details, requirements, id_institution, status) VALUES ('Huracan', 'requirement4', '4', 'Sin Completar');
+INSERT INTO "Emergency" (emergency_details, requirements, id_institution, status) VALUES ('Tsunami', 'requirement5', '5', 'Sin Completar');
+
+-------------------------------------------------------
+-- 6. eme_ability (10)
+-------------------------------------------------------
+
+INSERT INTO "Eme_ability" (id_ability, id_emergency) VALUES (1, 1);
+INSERT INTO "Eme_ability" (id_ability, id_emergency) VALUES (2, 2);
+INSERT INTO "Eme_ability" (id_ability, id_emergency) VALUES (3, 3);
+INSERT INTO "Eme_ability" (id_ability, id_emergency) VALUES (4, 4);
+INSERT INTO "Eme_ability" (id_ability, id_emergency) VALUES (5, 5);
+INSERT INTO "Eme_ability" (id_ability, id_emergency) VALUES (6, 1);
+INSERT INTO "Eme_ability" (id_ability, id_emergency) VALUES (7, 2);
+INSERT INTO "Eme_ability" (id_ability, id_emergency) VALUES (8, 3);
+INSERT INTO "Eme_ability" (id_ability, id_emergency) VALUES (9, 4);
+INSERT INTO "Eme_ability" (id_ability, id_emergency) VALUES (10, 5);
+
+-------------------------------------------------------
+-- 7. State_task (2)
+-------------------------------------------------------
+
+INSERT INTO "State_task" (state) VALUES (TRUE);
+INSERT INTO "State_task" (state) VALUES (FALSE);
+
+-------------------------------------------------------
+-- 8. Task (5)
+-------------------------------------------------------
+
+INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Limpiar escombros', '1', '2');
+INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Rescatar afectados', '2', '2');
+INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Asistir gente que no sabe nadar', '3', '2');
+INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Alimentar a personas', '4', '2');
+INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Trasladar personas', '5', '2');
+
+-------------------------------------------------------
+-- 9. Task_ability (5)
+-------------------------------------------------------
+
+INSERT INTO "Task_ability" (id_eme_ability, id_task) VALUES (1, 1);
+INSERT INTO "Task_ability" (id_eme_ability, id_task) VALUES (2, 2);
+INSERT INTO "Task_ability" (id_eme_ability, id_task) VALUES (3, 3);
+INSERT INTO "Task_ability" (id_eme_ability, id_task) VALUES (4, 4);
+INSERT INTO "Task_ability" (id_eme_ability, id_task) VALUES (5, 5);
+
+-------------------------------------------------------
+-- 10. ranking (5)
+-------------------------------------------------------
+
+INSERT INTO "Ranking" (id_task, rut_voluntary) VALUES ('1', '1-9');
+INSERT INTO "Ranking" (id_task, rut_voluntary) VALUES ('2', '2-9');
+INSERT INTO "Ranking" (id_task, rut_voluntary) VALUES ('3', '3-9');
+INSERT INTO "Ranking" (id_task, rut_voluntary) VALUES ('4', '4-9');
+INSERT INTO "Ranking" (id_task, rut_voluntary) VALUES ('5', '5-9');
