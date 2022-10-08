@@ -2,40 +2,30 @@
   <form method="post">
     <div class="container">
       <div align="center" class="container my-2">
-        <h1 style="color: white"> Registrar un nuevo Voluntario</h1>
+        <h1 style="color: white"> Ingresar una nueva emergencia</h1>
       </div>
       <br />
       <div class="f">
         <div class="row justify-content-center">
           <div class="col-12 col-md-8">
             <div class="form-group">
-              <label for="name" class="control-label">Nombre</label>
-              <input v-model="formData.name" type="text" class="form-control" id="name"
-                placeholder="Ingrese su nombre" />
+              <label for="emergency_details" class="control-label">Detalles Emergencia</label>
+              <textarea v-model="formData.emergency_details" type="large-text" class="form-control" id="name"
+                placeholder="Ingrese detalles emergencia" />
             </div>
             <div class="form-group">
-              <label for="edad" class="control-label">Edad</label>
-              <input v-model="formData.age" type="text" class="form-control" id="edad" name="edad"
-                placeholder="Ingrese su edad" />
-            </div>
-            <div class="form-group">
-              <label for="salud" class="control-label">Salud</label>
-              <input v-model="formData.health" type="text" class="form-control" id="salud" name="salud"
-                placeholder="Ingrese su estado de salud en la escala del 1 al 10" />
-            </div>
-            <div class="form-group">
-              <label for="equipamiento" class="control-label">Equipamiento</label>
-              <input v-model="formData.inventory" type="text" class="form-control" id="equipamiento" name="equipamiento"
-                placeholder="Ingrese el tipo de equipamiento que tiene a su disposición" />
-            </div>
-            <div class="form-group">
-              <button type="submit" v-on:click="sendData()" classnpm i @nuxtjs/axios="btn btn-primary">
-                Registrarse
-              </button>
+              <label for="requirements" class="control-label">Lista Requisitos</label>
+              <textarea v-model="formData.requirements" type="large-text" class="form-control" id="name"
+                placeholder="Ingrese detalles emergencia" />
             </div>
             <div class="row justify-content-center">
               <a href="/showVoluntary" class="btn btn-primary" role="button" aria-pressed="true">Volver a la lista de
                 Voluntarios</a>
+            </div>
+            <div class="form-group">
+              <button type="submit" v-on:click="sendData()" class="btn btn-primary">
+                Registrarse
+              </button>
             </div>
           </div>
         </div>
@@ -48,11 +38,10 @@ export default {
   data() {
     return {
       formData: {
-        name: "",
-        age: "",
-        health: "",
-        inventory: "",
-        avalaible: 1,
+        emergency_details: "",
+        requirements: "",
+        status: 0,
+        id_institution: 1,
       },
     };
   },
@@ -60,7 +49,7 @@ export default {
     sendData: async function () {
       // Envío de datos
       try {
-        this.$axios.post("/voluntaries", this.formData);
+        this.$axios.post("/emergencies", this.formData);
         console.log(this.formData);
       } catch (error) {
         console.log("error", error);
@@ -98,7 +87,10 @@ export default {
 body {
   background: #262626
 }
-
+textarea {
+  width: 300px;
+  height: 500px;
+}
 .f {
   color: white;
 }
