@@ -5,7 +5,7 @@ import com.tbd.lab1.models.Ability;
 import java.util.List;
 
 
-public interface HabilityRepository {
+public interface AbilityRepository {
 
     public List<Ability> getAllHabilities();
     public List<Ability> getHabilityById(Integer id);

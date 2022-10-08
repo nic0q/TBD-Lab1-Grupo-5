@@ -1,17 +1,17 @@
 package com.tbd.lab1.services;
 
 import com.tbd.lab1.models.Ability;
-import com.tbd.lab1.repositories.HabilityRepository;
+import com.tbd.lab1.repositories.AbilityRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin
 @RestController
-public class HabilityService {
-    private final HabilityRepository abilityRepository;
+public class AbilityService {
+    private final AbilityRepository abilityRepository;
 
-    public HabilityService(HabilityRepository abilityRepository) {
+    public AbilityService(AbilityRepository abilityRepository) {
         this.abilityRepository = abilityRepository;
     }
 
