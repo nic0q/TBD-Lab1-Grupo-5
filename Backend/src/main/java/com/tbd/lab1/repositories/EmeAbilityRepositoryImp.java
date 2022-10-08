@@ -16,9 +16,8 @@ public class EmeAbilityRepositoryImp implements EmeAbilityRepository{
     @Override
     public EmeAbility createEmeAbility(EmeAbility emeAbility) {
         try(Connection conn = sql2o.open()){
-            conn.createQuery("INSERT INTO \"Eme_ability\" (id_eme_ability, id_ability, id_emergency) "+
-                            "VALUES (:id_eme_ability, :id_ability, :id_emergency)")
-                    .addParameter("id_eme_ability", emeAbility.getId_eme_ability())
+            conn.createQuery("INSERT INTO \"Eme_ability\" (id_ability, id_emergency) "+
+                            "VALUES (:id_ability, :id_emergency)")
                     .addParameter("id_ability", emeAbility.getId_ability())
                     .addParameter("id_emergency", emeAbility.getId_emergency())
                     .executeUpdate().getKey();
