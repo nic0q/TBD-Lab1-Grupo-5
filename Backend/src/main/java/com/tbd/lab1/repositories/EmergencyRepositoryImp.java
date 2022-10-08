@@ -8,12 +8,20 @@ import org.sql2o.Sql2o;
 
 import java.util.List;
 
+/**
+ * Clase que implementa la interfaz EmergencyRepository.
+ */
 @Repository
 public class EmergencyRepositoryImp implements EmergencyRepository {
 
     @Autowired
     private Sql2o sql2o;
 
+    
+    /** 
+     * Método que retorna una lista de todas las emergencias
+     * @return List<Emergency>
+     */
     @Override
     public List<Emergency> getAllEmergencies(){
         try(Connection conn = sql2o.open()){
@@ -25,6 +33,13 @@ public class EmergencyRepositoryImp implements EmergencyRepository {
         }
     }
 
+    
+    /** 
+     * Método que recibe un id y busca una emergencia especifica. Si la emergencia
+     * existe entonces la retorna, de lo contrario retorna null.
+     * @param id
+     * @return List<Emergency>
+     */
     @Override
     public List<Emergency> getEmergencyById(int id){
         try(Connection conn = sql2o.open()){
@@ -37,7 +52,17 @@ public class EmergencyRepositoryImp implements EmergencyRepository {
         }
     }
 
+    
+    
+    /** 
+     * Método que recibe un objeto de tipo Emergency y lo inserta en la base de datos.
+     * Luego agrega los atributos especificados en la tabla de la base de datos. Retorna
+     * el objeto de tipo Emergency que se insertó. Si no se pudo insertar retorna null.
+     * @param emergency
+     * @return Emergency
+     */
     @Override
+    
     public Emergency createEmergency(Emergency emergency){
         try(Connection conn = sql2o.open()){
             conn.createQuery("INSERT INTO \"Emergency\" (emergency_details, requirements, id_institution, status)" +
@@ -54,6 +79,14 @@ public class EmergencyRepositoryImp implements EmergencyRepository {
         }
     }
 
+    
+    /** 
+     * Método que recibe un objeto de tipo Emergency y lo actualiza en la base de datos.
+     * Modifica los atributos especificados en la tabla de la base de datos. Retorna
+     * true si se pudo actualizar, de lo contrario retorna false.
+     * @param emergency
+     * @return boolean
+     */
     @Override
     public boolean editEmergency(Emergency emergency){
         try(Connection conn = sql2o.open()){
@@ -71,6 +104,13 @@ public class EmergencyRepositoryImp implements EmergencyRepository {
         }
     }
 
+    
+    /** 
+     * Método que recibe un id y elimina una emergencia especifica. Si la emergencia
+     * existe entonces la elimina, de lo contrario retorna false.
+     * @param id
+     * @return boolean
+     */
     @Override
     public boolean deleteEmergency(int id){
         int deletedEmergency;

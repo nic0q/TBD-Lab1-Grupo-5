@@ -4,6 +4,9 @@ import com.tbd.lab1.models.Emergency;
 
 import java.util.List;
 
+/**
+ * Interface para EmergencyRepository.
+ */
 public interface EmergencyRepository {
 
     public List<Emergency> getAllEmergencies();
