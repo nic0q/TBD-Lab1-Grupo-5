@@ -2,10 +2,7 @@ package com.tbd.lab1.services;
 
 import com.tbd.lab1.models.Emergency;
 import com.tbd.lab1.repositories.EmergencyRepository;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,8 +20,36 @@ public class EmergencyService {
         return emergencyRepository.getAllEmergencies();
     }
 
-    @GetMapping("emergency/{id}")
+    @GetMapping("emergencie/{id}")
     public List<Emergency> getEmergencyById(@PathVariable("id") int id){
         return emergencyRepository.getEmergencyById(id);
+    }
+
+    @PostMapping("/emergencies")
+    @ResponseBody
+    public Emergency createEmergency(@RequestBody Emergency emergency){
+        Emergency result = emergencyRepository.createEmergency(emergency);
+        return result;
+    }
+
+    @PutMapping("/emergencies/{id}")
+    public String editEmergency(@PathVariable("id") int id, @RequestBody Emergency emergency){
+        emergency.setId_emergency(id);
+        boolean result = emergencyRepository.editEmergency(emergency);
+        if(result){
+            return "Emergencia editada";
+        }else {
+            return "Emergencia no encontrada";
+        }
+    }
+
+    @DeleteMapping("/emergencies/{id}")
+    public String deleteEmergency(@PathVariable("id") int id){
+        boolean result = emergencyRepository.deleteEmergency(id);
+        if(result){
+            return "Emergencia eliminada";
+        }else{
+            return "Emergencia no encontrada";
+        }
     }
 }

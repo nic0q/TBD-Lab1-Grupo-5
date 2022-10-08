@@ -17,7 +17,7 @@ public class TaskHabilityRepositoryImp implements TaskHabilityRepository{
     @Override
     public TaskHability createTaskHability(TaskHability taskHability) {
         try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO \"TaskHability\" (id_task_hability, id_task, id_eme_hability) "+
+            conn.createQuery("INSERT INTO \"TaskHability\" (id_task_hability, id_task, id_eme_hability) "+
                             "VALUES (:id_task_hability, :id_task, :id_hability)")
                     .addParameter("id_task_hability", taskHability.getId_task_hability())
                     .addParameter("id_task", taskHability.getId_task())

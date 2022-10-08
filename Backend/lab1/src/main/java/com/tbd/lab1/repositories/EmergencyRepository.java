@@ -9,4 +9,10 @@ public interface EmergencyRepository {
     public List<Emergency> getAllEmergencies();
 
     public List<Emergency> getEmergencyById(int id);
+
+    public Emergency createEmergency(Emergency emergency);
+
+    public boolean editEmergency(Emergency emergency);
+
+    public boolean deleteEmergency(int id);
 }

@@ -7,7 +7,6 @@ public class Emergency{
     private String status;
     private Integer id_institution;
 
-
     public Integer getId_emergency() {
         return id_emergency;
     }
