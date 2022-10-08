@@ -20,7 +20,7 @@ public class EmergencyService {
         return emergencyRepository.getAllEmergencies();
     }
 
-    @GetMapping("emergency/{id}")
+    @GetMapping("emergencie/{id}")
     public List<Emergency> getEmergencyById(@PathVariable("id") int id){
         return emergencyRepository.getEmergencyById(id);
     }
@@ -30,5 +30,26 @@ public class EmergencyService {
     public Emergency createEmergency(@RequestBody Emergency emergency){
         Emergency result = emergencyRepository.createEmergency(emergency);
         return result;
+    }
+
+    @PutMapping("/emergencies/{id}")
+    public String editEmergency(@PathVariable("id") int id, @RequestBody Emergency emergency){
+        emergency.setId_emergency(id);
+        boolean result = emergencyRepository.editEmergency(emergency);
+        if(result){
+            return "Emergencia editada";
+        }else {
+            return "Emergencia no encontrada";
+        }
+    }
+
+    @DeleteMapping("/emergencies/{id}")
+    public String deleteEmergency(@PathVariable("id") int id){
+        boolean result = emergencyRepository.deleteEmergency(id);
+        if(result){
+            return "Emergencia eliminada";
+        }else{
+            return "Emergencia no encontrada";
+        }
     }
 }
