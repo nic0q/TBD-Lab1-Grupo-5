@@ -18,7 +18,7 @@ public class InstitutionService {
         return institutionRepository.getAllInstitutions();
     }
 
-    @GetMapping("institution/{id}")
+    @GetMapping("institutions/{id}")
     public List<Institution> getInstitutionById(@PathVariable("id") int id){
         return institutionRepository.getInstitutionById(id);
     }
