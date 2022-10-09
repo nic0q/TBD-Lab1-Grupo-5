@@ -6,7 +6,7 @@ package com.tbd.lab1.models;
 
 public class VolAbility {
     private Integer id_vol_ability;
-    private Integer voluntary_rut;
+    private String voluntary_rut;
     private Integer id_ability;
 
     /**
@@ -26,18 +26,18 @@ public class VolAbility {
     }
 
     /**
-     * Obtiene el rut (integer) de un Voluntario de una VolAbility
-     * @return Integer
+     * Obtiene el rut (String) de un Voluntario de una VolAbility
+     * @return String
      */
-    public Integer getVoluntary_rut() {
+    public String getVoluntary_rut() {
         return voluntary_rut;
     }
 
     /**
-     * Modifica el rut (integer) de un Voluntario de una VolAbility
+     * Modifica el rut (String) de un Voluntario de una VolAbility
      * @param voluntary_rut
      */
-    public void setVoluntary_rut(Integer voluntary_rut) {
+    public void setVoluntary_rut(String voluntary_rut) {
         this.voluntary_rut = voluntary_rut;
     }
 

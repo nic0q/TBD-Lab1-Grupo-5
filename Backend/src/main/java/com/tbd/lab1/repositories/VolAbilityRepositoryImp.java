@@ -25,7 +25,7 @@ public class VolAbilityRepositoryImp implements VolAbilityRepository {
     @Override
     public List<VolAbility> getAllVolAbilities(){
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM \"VolAbility\"").
+            return conn.createQuery("SELECT * FROM \"Vol_ability\"").
                     executeAndFetch(VolAbility.class);
         } catch(Exception e){
             System.out.println(e.getMessage());
@@ -43,7 +43,7 @@ public class VolAbilityRepositoryImp implements VolAbilityRepository {
     @Override
     public List<VolAbility> getVolAbilityById(int id){
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM \"VolAbility\" WHERE id_vol_ability = :id")
+            return conn.createQuery("SELECT * FROM \"Vol_ability\" WHERE id_vol_ability = :id")
                     .addParameter("id",id)
                     .executeAndFetch(VolAbility.class);
         }catch(Exception e){
@@ -63,7 +63,7 @@ public class VolAbilityRepositoryImp implements VolAbilityRepository {
     @Override
     public VolAbility createVolAbility(VolAbility volAbility){
         try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO \"VolAbility\" (voluntary_rut, id_ability) VALUES (:voluntary_rut, :id_ability)", true)
+            int insertedId = (int) conn.createQuery("INSERT INTO \"Vol_ability\" (voluntary_rut, id_ability) VALUES (:voluntary_rut, :id_ability)", true)
                     .addParameter("voluntary_rut", volAbility.getVoluntary_rut())
                     .addParameter("id_ability", volAbility.getId_ability())
                     .executeUpdate()
@@ -87,7 +87,7 @@ public class VolAbilityRepositoryImp implements VolAbilityRepository {
     @Override
     public boolean editVolAbility(VolAbility volAbility){
         try(Connection conn = sql2o.open()){
-            conn.createQuery("UPDATE \"VolAbility\" SET voluntary_rut = :voluntary_rut, id_ability = :id_ability WHERE id_vol_ability = :id")
+            conn.createQuery("UPDATE \"Vol_ability\" SET voluntary_rut = :voluntary_rut, id_ability = :id_ability WHERE id_vol_ability = :id")
                     .addParameter("voluntary_rut", volAbility.getVoluntary_rut())
                     .addParameter("id_ability", volAbility.getId_ability())
                     .addParameter("id", volAbility.getId_vol_ability())
@@ -110,7 +110,7 @@ public class VolAbilityRepositoryImp implements VolAbilityRepository {
     @Override
     public boolean deleteVolAbility(int id){
         try(Connection conn = sql2o.open()){
-            conn.createQuery("DELETE FROM \"VolAbility\" WHERE id_vol_ability = :id")
+            conn.createQuery("DELETE FROM \"Vol_ability\" WHERE id_vol_ability = :id")
                     .addParameter("id", id)
                     .executeUpdate();
             return true;
