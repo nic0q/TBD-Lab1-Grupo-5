@@ -9,10 +9,10 @@ import org.sql2o.Sql2o;
 import java.util.List;
 
 /**
- * Clase que implementa la interfaz RankigRepository.
+ * Clase que implementa la interfaz RankingRepository.
  */
 @Repository
-public class RankigRepositoryImp implements RankigRepository{
+public class RankingRepositoryImp implements RankingRepository{
     
     @Autowired
     private Sql2o sql2o;

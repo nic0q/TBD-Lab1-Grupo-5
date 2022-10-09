@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Interface para RankigRepository.
  */
-public interface RankigRepository {
+public interface RankingRepository {
     
     public List<Ranking> getAllRankings();
     
