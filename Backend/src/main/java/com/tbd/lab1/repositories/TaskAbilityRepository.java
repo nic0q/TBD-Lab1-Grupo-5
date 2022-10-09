@@ -4,6 +4,9 @@ import com.tbd.lab1.models.TaskAbility;
 
 import java.util.List;
 
+/**
+ * Interface para TaskAbilityRepository.
+ */
 public interface TaskAbilityRepository {
 
     public TaskAbility createTaskAbility(TaskAbility taskAbility);
