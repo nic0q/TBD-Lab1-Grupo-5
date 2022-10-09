@@ -8,12 +8,20 @@ import org.sql2o.Sql2o;
 
 import java.util.List;
 
+/**
+ * Clase que implementa la interfaz InstitutionRepository.
+ */
 @Repository
 public class InstitutionRepositoryImp implements InstitutionRepository {
 
     @Autowired
     private Sql2o sql2o;
 
+    
+    /** 
+     * Método que retorna una lista de todas las instituciones
+     * @return List<Institution>
+     */
     @Override
     public List<Institution> getAllInstitutions(){
         try(Connection conn = sql2o.open()){
@@ -25,6 +33,13 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
         }
     }
 
+    
+    /** 
+     * Método que recibe un id y busca una institucion en base a ese id, en caso de que
+     * no exista retorna null.
+     * @param id
+     * @return List<Institution>
+     */
     @Override
     public List<Institution> getInstitutionById(int id){
         try(Connection conn = sql2o.open()){
@@ -37,6 +52,14 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
         }
     }
 
+    
+    /** 
+     * Métoodo que recibe una institution como objeto y lo inserta en la base de datos,
+     * agregando los atributos name y name_coordinator. Si la operación es exitosa retorna
+     * el objeto de tipo Institution que se insertó, de lo contrario retorna null.
+     * @param institution
+     * @return Institution
+     */
     @Override
     public Institution createInstitution(Institution institution){
         try(Connection conn = sql2o.open()){
@@ -52,6 +75,14 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
         }
     }
 
+    
+    /** 
+     * Métoodo que recibe una institution como objeto y lo actualiza en la base de datos,
+     * modifica lso atributos name y name_coordinator. Si la operación es exitosa retorna
+     * true, de lo contrario retorna false.
+     * @param institution
+     * @return boolean
+     */
     @Override
     public boolean editInstitution(Institution institution){
         try(Connection conn = sql2o.open()){
@@ -67,6 +98,13 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
         }
     }
 
+    
+    /** 
+     * Método que recibe un id y elimina una institucion en base a ese id, si la operacion tiene
+     * exito retorna true y en caso de que no exista retorna false.
+     * @param id
+     * @return boolean
+     */
     @Override
     public boolean deleteInstitution(int id){
         try(Connection conn = sql2o.open()){

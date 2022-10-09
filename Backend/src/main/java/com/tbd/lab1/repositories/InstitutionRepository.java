@@ -4,6 +4,9 @@ import com.tbd.lab1.models.Institution;
 
 import java.util.List;
 
+/**
+ * Interface para InstitutionRepository.
+ */
 public interface InstitutionRepository {
     public List<Institution> getAllInstitutions();
 
