@@ -1,23 +1,17 @@
 <template>
-  <form method="post">
+  <form method="post" class="formu">
+    <div class="d-flex justify-content-center">
+      <h1 style="color: white"> Ingresar una nueva emergencia</h1>
+    </div>
+    <br>
     <div class="container">
-      <div align="center" class="container my-2">
-        <h1 style="color: white"> Ingresar una nueva emergencia</h1>
-      </div>
-      <br />
-      <div class="f">
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-8">
-            <div class="form-group">
-              <label for="emergency_details" class="control-label">Detalles Emergencia</label>
-              <textarea v-model="formData.emergency_details" type="large-text" class="form-control" id="name"
-                placeholder="Ingrese detalles emergencia" />
-            </div>
+      <div class="col1">
+          <div class="col-12">
             <div class="form-group">
               <div>
                 <label>Institucion</label> 
               </div>
-              <select class="form-select" v-model="formData.id_institution" aria-label="Default select example" v-on:click="getInstitutions()">
+              <select class="form-select select-institution" v-model="formData.id_institution" aria-label="Default select example" v-on:click="getInstitutions()">
                 <option value="">Seleccione</option>
                 <option v-for="(institution, index) in institutions" :value="institution.id_institution" :key="index">
                   {{institution.name}}
@@ -25,40 +19,88 @@
               </select>
             </div>
             <div class="form-group">
-              <div>
-                <label>Habilidad | Requerimiento</label>
-              </div>
-                <select class="form-select" v-model="ability_id" aria-label="Default select example" v-on:click="getAbilities()">
-                <option value="">Seleccione</option>
-                <option v-for="(ability, index) in abilities" :value="ability.id_ability" :key="index">
-                    {{ability.name_ability}}
-                </option>
-              </select>
-              <br><br>
-              <div>
-                <h6>Lista de Requerimientos a ingresar</h6>
-                <div v-for="(element, index) in names_abilities" :key="index">
-                <h6>-> {{element}}</h6>
-              </div>
-              </div>
-            </div>
-            <button type="button" class="btn btn-success" v-on:click="()=>saveEmeAbility(this.ability_id)">
-                Ingresar requerimiento
-            </button>
-            <button type="button" class="btn btn-danger" v-on:click="()=>deleteHability(this.ability_id)">
-                Eliminar requerimiento
-            </button>
-            <div align="center" class="mt-4">
-              <button type="button" class="btn btn-primary" v-on:click="sendDataEmergency()">
-                Ingresar Emergencia
-              </button>
+              <label for="emergency_details" class="control-label">Detalles</label>
+              <textarea rows="11" v-model="formData.emergency_details" type="large-text" class="form-control area" id="name"
+                placeholder="Ingrese detalles emergencia" />
             </div>
           </div>
-        </div>
+       
       </div>
+      <div class="col2">
+        <div>
+          <label>Requerimiento</label>
+        </div>
+          <select class="form-select select-ability" v-model="ability_id" aria-label="Default select example" v-on:click="getAbilities()">
+          <option value="">Seleccione</option>
+          <option v-for="(ability, index) in abilities" :value="ability.id_ability" :key="index">
+            {{ability.name_ability}}
+          </option>
+        </select>
+        <br><br>
+        <div class="ability-buttons">
+          <button type="button" class="btn btn-success font-weight-bold" v-on:click="()=>saveEmeAbility(this.ability_id)">+</button>
+            <button type="button" class="btn btn-danger font-weight-bold" v-on:click="()=>deleteHability(this.ability_id)">-<i class="fa fa-trash" aria-hidden="true"></i></button>
+        </div>
+        <div v-if="existe">
+          Ya existe
+        </div>
+        <br>
+        <h6>Requerimientos</h6>
+        <div class="ability-list">
+          <ul>
+            <li v-for="(element, index) in names_abilities" :key="index">
+              <h6>{{element}}</h6></li>  
+          </ul>
+          <div>
+        </div>
+        </div>
+        <br>
+      </div>
+    </div>
+    <div align="center" class="mt-4">
+      <button type="button" class="btn btn-primary" v-on:click="sendDataEmergency()">
+        Ingresar Emergencia
+      </button>
     </div>
   </form>
 </template>
+<style scoped>
+  .formu{
+    background-color: #1E1E1E;
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 50px;
+  }
+  textarea{
+    width: 300px;
+    resize: none;
+  }
+  .select-institution{
+    width: 300px;
+  }
+  .select-ability{
+    width: 200px;
+  }
+  .container{
+    display: flex;
+    align-items: flex-start;
+    color: white;
+    justify-content: center;
+    height: 400px;
+  }
+  .ability-list{
+    display: fixed;
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    padding: 3px;
+    width: 200px;
+    height: 213px;
+  }
+  .ability-buttons{
+    align-self: flex-end;
+  }
+</style>
 <script>
 
 export default {
@@ -75,6 +117,7 @@ export default {
       abilities: [],
       global_ability_array: [],
       names_abilities: [],
+      existe: false,
     };
   },
   methods: {
@@ -116,9 +159,14 @@ export default {
         id_emergency: this.formData.id_emergency,
       }
       this.getNameAbility(id_ability).then((response) => {
-        this.names_abilities.includes(response[0].name_ability) ? console.log("Ya existe") : this.names_abilities.push(response[0].name_ability);
-      });
-      this.global_ability_array.push(formData);
+        if(this.names_abilities.includes(response[0].name_ability)){
+          this.existe = true}
+      else{
+        this.names_abilities.push(response[0].name_ability)
+        this.existe = false
+      }
+      this.global_ability_array.push(formData);}
+      )
     },
     deleteHability: function(id_ability){
       this.global_ability_array = this.global_ability_array.filter((element) => element.id_ability != id_ability);
@@ -150,12 +198,5 @@ export default {
 <style>
 body {
   background: #262626
-}
-textarea {
-  width: 300px;
-  height: 500px;
-}
-.f {
-  color: white;
 }
 </style>
