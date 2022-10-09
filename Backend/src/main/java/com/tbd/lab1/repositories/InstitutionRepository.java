@@ -17,4 +17,6 @@ public interface InstitutionRepository {
     public boolean editInstitution(Institution institution);
 
     public boolean deleteInstitution(int id);
+
+    public int deleteAllInstitution();
 }

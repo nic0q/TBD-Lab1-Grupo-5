@@ -46,4 +46,15 @@ public class AbilityService {
         if(result) return "Habilidad eliminada";
         else return "Error al eliminar la habilidad";
     }
+
+    @DeleteMapping("/abilities")
+    public String deleteAllAbility(){
+        int result = abilityRepository.deleteAllAbility();
+        if(result == 1){
+            return "Todas las habilidades han sido eliminadas";
+        }
+        else{
+            return "Ha habido un error al intentar borrar todas las habilidades";
+        }
+    }
 }

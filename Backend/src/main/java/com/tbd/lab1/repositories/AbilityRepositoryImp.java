@@ -72,4 +72,16 @@ public class AbilityRepositoryImp implements AbilityRepository {
         }
         return deletedAbility == 1;
     }
+
+    @Override
+    public int deleteAllAbility(){
+        try(Connection conn = sql2o.open()){
+            conn.createQuery("TRUNCATE \"Ability\" CASCADE")
+                    .executeUpdate();
+            return 1;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
 }

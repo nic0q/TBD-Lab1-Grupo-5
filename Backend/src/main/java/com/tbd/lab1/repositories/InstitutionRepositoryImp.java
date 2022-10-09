@@ -118,4 +118,15 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
         }
     }
 
+    @Override
+    public int deleteAllInstitution(){
+        try(Connection conn = sql2o.open()) {
+            conn.createQuery("TRUNCATE \"Institution\" CASCADE")
+                    .executeUpdate();
+            return 1;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
 }

@@ -81,4 +81,14 @@ public class InstitutionService {
             return "Institución no encontrada";
         }
     }
+
+    @DeleteMapping("/institutions")
+    public String deleteAllInstitution(){
+        int result = institutionRepository.deleteAllInstitution();
+        if(result == 1){
+            return "Todas las instituciones han sido eliminadas";
+        }else{
+            return "Ha ocurrido un problema al intentar eliminar todas las instituciones";
+        }
+    }
 }

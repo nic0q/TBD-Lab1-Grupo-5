@@ -8,8 +8,15 @@ import java.util.List;
 public interface AbilityRepository {
 
     public List<Ability> getAllAbilities();
+
     public List<Ability> getAbilityById(Integer id);
+
     public Ability createAbility(Ability ability);
+
     public boolean editAbility(Ability ability);
+
     public boolean deleteAbility(Integer id);
+
+    public int deleteAllAbility();
+
 }
