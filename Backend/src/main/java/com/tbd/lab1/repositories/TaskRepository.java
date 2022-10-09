@@ -3,6 +3,9 @@ package com.tbd.lab1.repositories;
 import com.tbd.lab1.models.Task;
 import java.util.List;
 
+/**
+ * Interface para TaskRepository.
+ */
 public interface TaskRepository {
     public int countTask();
 

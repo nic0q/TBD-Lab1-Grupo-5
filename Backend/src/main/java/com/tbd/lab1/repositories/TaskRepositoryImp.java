@@ -8,10 +8,18 @@ import org.sql2o.Sql2o;
 
 import java.util.List;
 
+/**
+ * Clase que implementa la interfaz TaskRepository.
+ */
 @Repository
 public class TaskRepositoryImp implements TaskRepository{
     @Autowired
     private Sql2o sql2o;
+    
+    /** 
+     * Método que cuenta la cantidad de tareas en la base de datos
+     * @return int
+     */
     @Override
     public int countTask() {
         int total = 0;
@@ -20,6 +28,11 @@ public class TaskRepositoryImp implements TaskRepository{
         }
         return total;
     }
+    
+    /** 
+     * Método que retorna una lista con todas las tareas en la base de datos
+     * @return List<Task>
+     */
     @Override
     public List<Task> getAllTasks() {
         try(Connection conn = sql2o.open()){
@@ -30,6 +43,12 @@ public class TaskRepositoryImp implements TaskRepository{
             return null;
         }
     }
+    
+    /** 
+     * Método que obtiene una tarea por su id
+     * @param id
+     * @return List<Task>
+     */
     @Override
     public List<Task> getTaskById(int id) {
         try(Connection conn = sql2o.open()){
@@ -41,6 +60,12 @@ public class TaskRepositoryImp implements TaskRepository{
             return null;
         }
     }
+    
+    /** 
+     * Método que crea una tarea en la base de datos
+     * @param task
+     * @return Task
+     */
     @Override
     public Task createTask(Task task){
         try(Connection conn = sql2o.open()){
@@ -56,6 +81,12 @@ public class TaskRepositoryImp implements TaskRepository{
             return null;
         }
     }
+    
+    /** 
+     * Método que edita una tarea en la base de datos	
+     * @param task
+     * @return boolean
+     */
     @Override
     public boolean editTask(Task task) {
         try(Connection conn = sql2o.open()){
@@ -71,6 +102,12 @@ public class TaskRepositoryImp implements TaskRepository{
             return false;
         }
     }
+    
+    /** 
+     * Método que elimina una tarea en la base de datos
+     * @param id
+     * @return boolean
+     */
     @Override
     public boolean deleteTask(int id) {
         int deletedTask;
