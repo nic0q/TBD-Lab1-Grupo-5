@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Clase servicio para Institution.
+ */
 @CrossOrigin
 @RestController
 public class InstitutionService {
@@ -13,21 +16,45 @@ public class InstitutionService {
         this.institutionRepository = institutionRepository;
     }
 
+    
+    /** 
+     * Método que conecta la ruta /institutions con el método getAllInstitutions().
+     * @return List<Institution>
+     */
     @GetMapping("/institutions")
     public List<Institution> getAllInstitutions(){
         return institutionRepository.getAllInstitutions();
     }
 
+    
+    /** 
+     * Método que conecta la ruta /institutions/{id} con el método getInstitutionById().
+     * @param id
+     * @return List<Institution>
+     */
     @GetMapping("institutions/{id}")
     public List<Institution> getInstitutionById(@PathVariable("id") int id){
         return institutionRepository.getInstitutionById(id);
     }
 
+    
+    /** 
+     * Método que conecta la ruta /institutions con el método createInstitution().
+     * @param institution
+     * @return Institution
+     */
     @PostMapping("/institutions")
     public Institution createInstitution(@RequestBody Institution institution){
         return institutionRepository.createInstitution(institution);
     }
 
+    
+    /** 
+     * Método que conecta la ruta /institutions con el método updateInstitution().
+     * @param id
+     * @param institution
+     * @return String
+     */
     @PutMapping("/institutions/{id}")
     public String editInstitution(@PathVariable("id") int id, @RequestBody Institution institution){
         institution.setId_institution(id);
@@ -39,6 +66,12 @@ public class InstitutionService {
         }
     }
 
+    
+    /** 
+     * Método que conecta la ruta /institutions/{id} con el método deleteInstitution().
+     * @param id
+     * @return String
+     */
     @DeleteMapping("/institutions/{id}")
     public String deleteInstitution(@PathVariable("id") int id) {
         boolean result = institutionRepository.deleteInstitution(id);
