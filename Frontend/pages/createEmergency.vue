@@ -41,9 +41,6 @@
           <button type="button" class="btn btn-success font-weight-bold" v-on:click="()=>saveEmeAbility()">+</button>
             <button type="button" class="btn btn-danger font-weight-bold" v-on:click="()=>deleteHability()">-</button>
         </div>
-        <div v-if="existe">
-          Ya existe
-        </div>
         <br>
         <h6>Requerimientos</h6>
         <div class="ability-list">
@@ -104,7 +101,6 @@
   }
 </style>
 <script>
-
 export default {
   data() {
     return {
@@ -161,15 +157,9 @@ export default {
         id_emergency: this.formData.id_emergency,
       }
       this.global_ability_array.push(formEmergData)
-      
       this.getNameAbility(this.ability_id).then((response) => {
-        if(this.names_abilities.includes(response[0].name_ability)){
-          this.existe = true}
-        else{
-          this.names_abilities.push(response[0].name_ability)
-          this.existe = false
-        }}
-      )
+        !this.names_abilities.includes(response[0].name_ability) ? this.names_abilities.push(response[0].name_ability) : ""
+      })
     },
     deleteHability: function(){
       this.global_ability_array = this.global_ability_array.filter((element) => element.id_ability != this.ability_id);
