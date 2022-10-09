@@ -33,7 +33,7 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
     @Override
     public List<Voluntary> getVoluntaryByRut(String rut) {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM \"Voluntary\" WHERE rut_voluntary = :rut")
+            return conn.createQuery("SELECT * FROM \"Voluntary\" WHERE rut = :rut")
                     .addParameter("rut", rut)
                     .executeAndFetch(Voluntary.class);
         } catch (Exception e) {
@@ -60,11 +60,11 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
     @Override
     public boolean editVoluntary(Voluntary voluntary) {
         try(Connection conn = sql2o.open()){
-                conn.createQuery("UPDATE \"Voluntary\" SET rut = :voluntaryRut, name = :voluntaryName, age = :voluntaryAge, avalaible = :voluntaryAvalaible WHERE rut = :voluntaryRut")
-                        .addParameter("voluntaryRut", voluntary.getRut())
-                        .addParameter("voluntaryName", voluntary.getName())
-                        .addParameter("voluntaryAge", voluntary.getAge())
-                        .addParameter("voluntaryAvalaible", voluntary.getAvalaible())
+                conn.createQuery("UPDATE \"Voluntary\" SET name = :name, age = :age, avalaible = :avalaible WHERE rut = :rut")
+                        .addParameter("rut", voluntary.getRut())
+                        .addParameter("name", voluntary.getName())
+                        .addParameter("age", voluntary.getAge())
+                        .addParameter("avalaible", voluntary.getAvalaible())
                         .executeUpdate();
                 return true;
             }catch(Exception e){
@@ -73,11 +73,11 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
             }
     }
     @Override
-    public boolean deleteVoluntary(int id) {
+    public boolean deleteVoluntary(String rut) {
         int deletedVoluntary;
         try(Connection conn = sql2o.open()){
-            deletedVoluntary = conn.createQuery("DELETE FROM \"Voluntary\" WHERE id_voluntary = :id")
-                    .addParameter("id", id)
+            deletedVoluntary = conn.createQuery("DELETE FROM \"Voluntary\" WHERE rut = :rut")
+                    .addParameter("rut", rut)
                     .executeUpdate().getResult();
         }
         return deletedVoluntary == 1;

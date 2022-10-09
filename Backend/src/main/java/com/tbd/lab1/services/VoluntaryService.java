@@ -28,7 +28,7 @@ public class VoluntaryService {
     public List<Voluntary> getAllVoluntaries() {
         return voluntaryRepository.getAllVoluntaries();
     }
-    @GetMapping("/voluntarie/{rut}")
+    @GetMapping("/voluntaries/{rut}")
     public List<Voluntary> getVoluntaryById(@PathVariable("rut") String rut) {
         return voluntaryRepository.getVoluntaryByRut(rut);
     }
@@ -45,7 +45,7 @@ public class VoluntaryService {
         return result;
     }
 
-    @PutMapping("/voluntaries/{id}")
+    @PutMapping("/voluntaries/{rut}")
     @ResponseBody
     public String editVoluntary(@PathVariable("rut") String rut, @RequestBody Voluntary voluntary){
         voluntary.setRut(rut);
@@ -58,7 +58,7 @@ public class VoluntaryService {
     }
     @DeleteMapping("/voluntaries/{rut}")
     @ResponseBody
-    public String deleteVoluntary(@PathVariable("rut") int rut){
+    public String deleteVoluntary(@PathVariable("rut") String rut){
         boolean result = voluntaryRepository.deleteVoluntary(rut);
         if (result){
             return "Voluntario eliminado";

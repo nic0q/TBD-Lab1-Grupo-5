@@ -37,7 +37,7 @@ public class EmergencyService {
      * @param id
      * @return List<Emergency>
      */
-    @GetMapping("emergencie/{id}")
+    @GetMapping("emergencies/{id}")
     public List<Emergency> getEmergencyById(@PathVariable("id") int id){
         return emergencyRepository.getEmergencyById(id);
     }

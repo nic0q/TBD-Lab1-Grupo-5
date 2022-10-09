@@ -54,7 +54,7 @@ public class EmeAbilityRepositoryImp implements EmeAbilityRepository{
     @Override
     public boolean editEmeAbility(EmeAbility emeAbility) {
         try(Connection conn = sql2o.open()){
-            conn.createQuery("UPDATE \"Eme_ability\" SET id_eme_ability = :emeAbilityIdEmeAbility, id_ability = :emeAbilityIdAbility, id_emergency = :emeAbilityIdEmergency WHERE id_eme_ability = :emeAbilityIdEmeAbility")
+            conn.createQuery("UPDATE \"Eme_ability\" SET id_ability = :id_ability, id_emergency = :id_emergency WHERE id_eme_ability = :id_eme_ability")
                     .addParameter("id_eme_ability", emeAbility.getId_eme_ability())
                     .addParameter("id_ability", emeAbility.getId_ability())
                     .addParameter("id_emergency", emeAbility.getId_emergency())

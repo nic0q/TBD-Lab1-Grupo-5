@@ -12,7 +12,7 @@ public interface VoluntaryRepository {
 
   public List<Voluntary> getVoluntaryByRut(String rut);
 
-  public boolean deleteVoluntary(int id);
+  public boolean deleteVoluntary(String rut);
 
   public boolean editVoluntary(Voluntary voluntary);
 }

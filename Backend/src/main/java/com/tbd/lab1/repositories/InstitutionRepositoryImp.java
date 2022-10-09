@@ -40,10 +40,10 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
     @Override
     public Institution createInstitution(Institution institution){
         try(Connection conn = sql2o.open()){
-            conn.createQuery("INSERT INTO \"Institution\" (name, coordinator)" +
-                    "values (:institutionName, :institutionCoordinator)")
-                    .addParameter("institutionName", institution.getName())
-                    .addParameter("institutionCoordinator", institution.getName_coordinator())
+            conn.createQuery("INSERT INTO \"Institution\" (name, name_coordinator)" +
+                    "values (:name, :name_coordinator)")
+                    .addParameter("name", institution.getName())
+                    .addParameter("name_coordinator", institution.getName_coordinator())
                     .executeUpdate().getKey();
             return institution;
         } catch(Exception e){
@@ -55,10 +55,10 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
     @Override
     public boolean editInstitution(Institution institution){
         try(Connection conn = sql2o.open()){
-            conn.createQuery("UPDATE \"Institution\" SET name = :institutionName")
-                    .addParameter("institutionName", institution.getName())
-                    .addParameter("institutionCoordinator", institution.getName_coordinator())
-                    .addParameter("institutionId", institution.getId_institution())
+            conn.createQuery("UPDATE \"Institution\" SET name = :name, name_coordinator = :name_coordinator WHERE id_institution = :id_institution")
+                    .addParameter("name", institution.getName())
+                    .addParameter("name_coordinator", institution.getName_coordinator())
+                    .addParameter("id_institution", institution.getId_institution())
                     .executeUpdate();
             return true;
         } catch(Exception e){

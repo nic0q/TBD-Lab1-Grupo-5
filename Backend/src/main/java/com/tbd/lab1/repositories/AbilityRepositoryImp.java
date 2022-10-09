@@ -38,7 +38,7 @@ public class AbilityRepositoryImp implements AbilityRepository {
     public Ability createAbility(Ability ability) {
         try(Connection conn = sql2o.open()){
             conn.createQuery("INSERT INTO \"Ability\" (name_ability, description_ability) " +
-            "values (:name_ability,:description_ability")
+            "VALUES (:name_ability,:description_ability")
                     .addParameter("name_ability", ability.getName_ability())
                     .addParameter("description_ability", ability.getDescription_ability())
                     .executeUpdate().getKey();

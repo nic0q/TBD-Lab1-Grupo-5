@@ -28,13 +28,24 @@ public class InstitutionService {
         return institutionRepository.createInstitution(institution);
     }
 
-    @PutMapping("/institutions")
-    public boolean editInstitution(@RequestBody Institution institution){
-        return institutionRepository.editInstitution(institution);
+    @PutMapping("/institutions/{id}")
+    public String editInstitution(@PathVariable("id") int id, @RequestBody Institution institution){
+        institution.setId_institution(id);
+        boolean result = institutionRepository.editInstitution(institution);
+        if(result){
+            return "Institución editada";
+        }else {
+            return "Institución no encontrada";
+        }
     }
 
     @DeleteMapping("/institutions/{id}")
-    public boolean deleteInstitution(@PathVariable("id") int id){
-        return institutionRepository.deleteInstitution(id);
+    public String deleteInstitution(@PathVariable("id") int id) {
+        boolean result = institutionRepository.deleteInstitution(id);
+        if (result) {
+            return "Institución eliminada";
+        } else {
+            return "Institución no encontrada";
+        }
     }
 }
