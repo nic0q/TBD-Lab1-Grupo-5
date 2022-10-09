@@ -173,8 +173,7 @@ CREATE TABLE IF NOT EXISTS "log_action"(
     PRIMARY KEY ("id")
 );
 
-ALTER TABLE public.log_action
-    OWNER to postgres;
+
 
 -------------------------------------------------------
 --Función para trigger al insertar una emergencia -----
@@ -221,7 +220,7 @@ CREATE TRIGGER trg_insert_emergency_log_action
 CREATE TRIGGER trg_update_emergency_log_action
     AFTER UPDATE ON "Emergency"
     FOR EACH ROW
-    EXECUTE PROCEDURE insert_emergency_log_action();
+    EXECUTE PROCEDURE update_emergency_log_action();
 
 
 -------------------------------------------------------
