@@ -24,12 +24,35 @@
                 </option>
               </select>
             </div>
-            <button type="button" class="btn btn-primary" v-on:click="sendData()">
-              Ingresar Emergencia
+            <div class="form-group">
+              <div>
+                <label>Habilidad | Requerimiento</label>
+              </div>
+                <select class="form-select" v-model="ability_id" aria-label="Default select example" v-on:click="getAbilities()">
+                <option value="">Seleccione</option>
+                <option v-for="(ability, index) in abilities" :value="ability.id_ability" :key="index">
+                    {{ability.name_ability}}
+                </option>
+              </select>
+              <br><br>
+              <div>
+                <h6>Lista de Requerimientos a ingresar</h6>
+                <div v-for="(element, index) in names_abilities" :key="index">
+                <h6>-> {{element}}</h6>
+              </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-success" v-on:click="()=>saveEmeAbility(this.ability_id)">
+                Ingresar requerimiento
             </button>
-            <button v-on:click="sendToEmeAbility()" type="button" class="btn btn-primary">
-              Ingresar Requerimientos
+            <button type="button" class="btn btn-danger" v-on:click="()=>deleteHability(this.ability_id)">
+                Eliminar requerimiento
             </button>
+            <div align="center" class="mt-4">
+              <button type="button" class="btn btn-primary" v-on:click="sendDataEmergency()">
+                Ingresar Emergencia
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -42,21 +65,24 @@ export default {
   data() {  
     return {
       formData: {
+        id_emergency: this.generateId(),
         emergency_details: "",
         status: "Activo",
         id_institution: "",
       },
+      ability_id: "",
       institutions: [],
       abilities: [],
-      id_emergency: "",
+      global_ability_array: [],
+      names_abilities: [],
     };
   },
   methods: {
+    // Getters de desplegables
     getInstitutions: async function () {
       try {
         let response = await this.$axios.get("/institutions");
         this.institutions = response.data;
-        console.log(response);
       } catch (error) {
         console.log("error", error);
       }
@@ -65,29 +91,59 @@ export default {
       try {
         let response = await this.$axios.get("/abilities");
         this.abilities = response.data;
-        console.log(response);
       } catch (error) {
         console.log("error", error);
       }
     },
-    sendData: function () {
+    // Genera el id de la emergencia
+    generateId: function() {
+      let id = Math.floor(Math.random() * 1000000000);
+      return id;
+    },
+    // Obtiene el nombre de la habilidad
+    getNameAbility: async function(id_ability){
+      try {
+        let response = await this.$axios.get(`abilities/${id_ability}`);
+        return response.data;
+      } catch (error) {
+        console.log("error", error);
+      }
+    },
+    // Guarda los json de la emergencia_habilidad
+    saveEmeAbility: function(id_ability){
+      const formData = {
+        id_ability: id_ability,
+        id_emergency: this.formData.id_emergency,
+      }
+      this.getNameAbility(id_ability).then((response) => {
+        this.names_abilities.includes(response[0].name_ability) ? console.log("Ya existe") : this.names_abilities.push(response[0].name_ability);
+      });
+      this.global_ability_array.push(formData);
+    },
+    deleteHability: function(id_ability){
+      this.global_ability_array = this.global_ability_array.filter((element) => element.id_ability != id_ability);
+      this.getNameAbility(id_ability).then((response) => {
+        this.names_abilities = this.names_abilities.filter((element) => element != response[0].name_ability);
+      });
+    },  
+    // Postea la emergencia
+    sendDataEmergency: function () {
        try {
-         let response = this.$axios.post("/emergencies", this.formData);
-         console.log(response);
+         this.$axios.post("/emergencies", this.formData);
+         this.global_ability_array.forEach(async (element) => {
+           let response = await this.$axios.post("/eme-abilities", element);
+           console.log(response);
+         })
        } catch (error) {
          console.log("error", error);
        }
-      //console.log(this.formData)
+       this.formData.id_emergency = this.generateId();
+       this.cleanArrays();
     },
-    getIdEmergency: function () {
-      // SACAR EL ID
-    },
-    // created: function () {
-    //   getInstitutions();
-    // }
-    sendToEmeAbility: function () {
-      this.$router.push({ name: "createEmeAbility", params: { id_emergency: this.id_emergency } });
-    },
+    cleanArrays: function(){
+      this.global_ability_array = [];
+      this.names_abilities = [];
+    }
   },
 };
 </script>

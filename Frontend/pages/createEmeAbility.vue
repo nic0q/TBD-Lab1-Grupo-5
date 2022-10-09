@@ -15,7 +15,7 @@
                 <select class="form-select" v-model="formData.id_ability" aria-label="Default select example" v-on:click="getAbilities()">
                   <option value="">Seleccione</option>
                   <option v-for="(ability, index) in abilities" :value="ability.id_ability" :key="index">
-                    {{ability.name}}
+                    {{ability.name_ability}}
                   </option>
                 </select>
               </div>

@@ -65,8 +65,9 @@ public class EmergencyRepositoryImp implements EmergencyRepository {
     
     public Emergency createEmergency(Emergency emergency){
         try(Connection conn = sql2o.open()){
-            conn.createQuery("INSERT INTO \"Emergency\" (emergency_details, id_institution, status)" +
-                    "values (:emergencyDetails, :emergencyInstitution, :emergencyStatus)")
+            conn.createQuery("INSERT INTO \"Emergency\" (id_emergency, emergency_details, id_institution, status)" +
+                    "values (:id_emergency, :emergencyDetails, :emergencyInstitution, :emergencyStatus)")
+                    .addParameter("id_emergency", emergency.getId_emergency())
                     .addParameter("emergencyDetails", emergency.getEmergency_details())
                     .addParameter("emergencyInstitution", emergency.getId_institution())
                     .addParameter("emergencyStatus", emergency.getStatus())
