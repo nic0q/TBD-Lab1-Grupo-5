@@ -120,4 +120,22 @@ public class EmergencyRepositoryImp implements EmergencyRepository {
         }
         return deletedEmergency == 1;
     }
+
+    
+    /** 
+     * Método que elimina todas las emergencias de la base de datos.
+     * Retorna 1 si se pudo eliminar, de lo contrario retorna 0.
+     * @return int
+     */
+    @Override
+    public int deleteAllEmergency(){
+        try(Connection conn = sql2o.open()){
+            conn.createQuery("DELETE FROM \"Emergency\"")
+                    .executeUpdate();
+            return 1;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
 }

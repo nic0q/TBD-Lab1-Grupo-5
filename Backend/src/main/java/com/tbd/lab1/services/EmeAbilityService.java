@@ -9,6 +9,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 public class EmeAbilityService {
+
     private final EmeAbilityRepository emeAbilityRepository;
     EmeAbilityService(EmeAbilityRepository emeAbilityRepository){
         this.emeAbilityRepository = emeAbilityRepository;
@@ -45,7 +46,7 @@ public class EmeAbilityService {
 
     @DeleteMapping("/eme-abilities/{id}")
     @ResponseBody
-    public String deleteTaskHability(@PathVariable("id") int id){
+    public String deleteEmeHability(@PathVariable("id") int id){
         boolean result = emeAbilityRepository.deleteEmeAbility(id);
         if (result){
             return "Habilidad de emergencia eliminada";
@@ -54,4 +55,13 @@ public class EmeAbilityService {
         }
     }
 
+    @DeleteMapping("/eme-abilities")
+    public String deleteAllEmeHability(){
+        int result = emeAbilityRepository.deleteAllEmeAbility();
+        if(result == 1){
+            return "Todas las habilidades de emergencia han sido eliminadas";
+        }else{
+            return "Ha ocurrido un error al intentar borrar las habilidades de emergencia";
+        }
+    }
 }

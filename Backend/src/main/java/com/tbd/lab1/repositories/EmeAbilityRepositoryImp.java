@@ -79,4 +79,16 @@ public class EmeAbilityRepositoryImp implements EmeAbilityRepository{
         }
     }
 
+    @Override
+    public int deleteAllEmeAbility(){
+        try(Connection conn = sql2o.open()){
+            conn.createQuery("TRUNCATE \"Eme_ability\" CASCADE")
+                    .executeUpdate();
+            return 1;
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
+
 }

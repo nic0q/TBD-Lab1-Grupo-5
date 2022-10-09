@@ -8,10 +8,19 @@ import org.sql2o.Sql2o;
 
 import java.util.List;
 
+/**
+ * Clase que implementa el repositorio para Voluntary.
+ */
 @Repository
 public class VoluntaryRepositoryImp implements VoluntaryRepository{
+
   @Autowired
     private Sql2o sql2o;
+    
+    /** 
+     * Método que retorna el número de voluntarios.
+     * @return int
+     */
     @Override
     public int countVoluntary() {
         int total = 0;
@@ -20,6 +29,11 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
         }
         return total;
     }
+    
+    /** 
+     * Método que retorna una lista con todos los voluntarios.
+     * @return List<Voluntary>
+     */
     @Override
     public List<Voluntary> getAllVoluntaries() {
         try(Connection conn = sql2o.open()){
@@ -30,6 +44,12 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
             return null;
         }
     }
+    
+    /** 
+     * Método que ontiene un voluntario de la base de datos por su rut.
+     * @param rut
+     * @return List<Voluntary>
+     */
     @Override
     public List<Voluntary> getVoluntaryByRut(String rut) {
         try(Connection conn = sql2o.open()){
@@ -41,6 +61,12 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
             return null;
         }
     }
+    
+    /** 
+     * Método que inserta un voluntario en la base de datos.
+     * @param voluntary
+     * @return Voluntary
+     */
     @Override
     public Voluntary createVoluntary(Voluntary voluntary){
       try(Connection conn = sql2o.open()){
@@ -57,6 +83,12 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
             return null;
         }
     }
+    
+    /** 
+     * Método que modifica un voluntario de la base de datos
+     * @param voluntary
+     * @return boolean
+     */
     @Override
     public boolean editVoluntary(Voluntary voluntary) {
         try(Connection conn = sql2o.open()){
@@ -72,6 +104,12 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
                 return false;
             }
     }
+    
+    /** 
+     * Método que elimina un voluntario de la base de datos.
+     * @param rut
+     * @return boolean
+     */
     @Override
     public boolean deleteVoluntary(String rut) {
         int deletedVoluntary;

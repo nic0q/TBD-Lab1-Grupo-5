@@ -3,6 +3,9 @@ package com.tbd.lab1.repositories;
 import com.tbd.lab1.models.Voluntary;
 import java.util.List;
 
+/**
+ * Clase repositorio para Voluntary.
+ */
 public interface VoluntaryRepository {
   public int countVoluntary();
 

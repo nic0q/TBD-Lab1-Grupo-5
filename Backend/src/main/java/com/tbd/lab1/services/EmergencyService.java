@@ -18,7 +18,6 @@ public class EmergencyService {
         this.emergencyRepository = emergencyRepository;
     }
 
-    
     /** 
      * Método que conecta la ruta /emergencies con el método getAllEmergencies() del
      * repositorio de Emergency. Retorna una lista de todas las emergencias.
@@ -29,7 +28,6 @@ public class EmergencyService {
         return emergencyRepository.getAllEmergencies();
     }
 
-    
     /** 
      * Método que conecta la ruta /emergencies/{id} con el método getEmergencyById() del
      * repositorio de Emergency. Retorna una lista con la emergencia que tiene el id
@@ -42,7 +40,6 @@ public class EmergencyService {
         return emergencyRepository.getEmergencyById(id);
     }
 
-    
     /** 
      * Método que conecta la ruta /emergencies con el método createEmergency() del
      * repositorio de Emergency. Recibe un objeto de tipo Emergency y lo inserta en la
@@ -58,7 +55,6 @@ public class EmergencyService {
         return result;
     }
 
-    
     /** 
      * Método que conecta la ruta /emergencies/{id} con el método editEmergency() del
      * repositorio de Emergency. Recibe un objeto de tipo Emergency y lo actualiza en la
@@ -79,7 +75,6 @@ public class EmergencyService {
         }
     }
 
-    
     /** 
      * Método que conecta la ruta /emergencies/{id} con el método deleteEmergency() del
      * repositorio de Emergency. Recibe un id y elimina la emergencia que tiene ese id.
@@ -95,6 +90,23 @@ public class EmergencyService {
             return "Emergencia eliminada";
         }else{
             return "Emergencia no encontrada";
+        }
+    }
+
+    /** 
+     * Método que conecta la ruta /emergencies con el método deleteAllEmergency() del
+     * repositorio de Emergency. Elimina todas las emergencias de la base de datos.
+     * Retorna un mensaje de éxito si se pudo eliminar, de lo contrario retorna un mensaje
+     * donde se indica que no se pudo eliminar.
+     * @return String
+     */
+    @DeleteMapping("/emergencies")
+    public String deleteAllEmergencies(){
+        int result = emergencyRepository.deleteAllEmergency();
+        if(result == 1){
+            return "Todas las emergencias han sido eliminadas";
+        }else{
+            return "Hubo un error eliminando emergencias";
         }
     }
 }

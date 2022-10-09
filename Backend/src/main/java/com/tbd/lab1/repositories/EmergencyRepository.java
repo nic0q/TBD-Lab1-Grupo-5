@@ -18,4 +18,6 @@ public interface EmergencyRepository {
     public boolean editEmergency(Emergency emergency);
 
     public boolean deleteEmergency(int id);
+
+    public int deleteAllEmergency();
 }
