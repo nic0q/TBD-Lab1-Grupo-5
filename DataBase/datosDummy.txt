@@ -61,11 +61,11 @@ INSERT INTO "Institution" (name, name_coordinator) VALUES ('Bomberos', 'Xavi');
 -- 5. Emergency (5)
 -------------------------------------------------------
 
-INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Terremoto', '1', 'Sin Completar');
-INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Incendio', '2', 'Sin Completar');
-INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Inundacion', '3', 'Sin Completar');
-INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Huracan', '4', 'Sin Completar');
-INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Tsunami', '5', 'Sin Completar');
+INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Terremoto', '1', 'Creado');
+INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Incendio', '2', 'Creado');
+INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Inundacion', '3', 'Creado');
+INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Huracan', '4', 'Creado');
+INSERT INTO "Emergency" (emergency_details, id_institution, status) VALUES ('Tsunami', '5', 'Creado');
 
 -------------------------------------------------------
 -- 6. eme_ability (10)
