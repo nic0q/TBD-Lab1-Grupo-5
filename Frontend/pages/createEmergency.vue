@@ -38,8 +38,8 @@
         </select>
         <br><br>
         <div class="ability-buttons">
-          <button type="button" class="btn btn-success font-weight-bold" v-on:click="()=>saveEmeAbility(this.ability_id)">+</button>
-            <button type="button" class="btn btn-danger font-weight-bold" v-on:click="()=>deleteHability(this.ability_id)">-<i class="fa fa-trash" aria-hidden="true"></i></button>
+          <button type="button" class="btn btn-success font-weight-bold" v-on:click="()=>saveEmeAbility()">+</button>
+            <button type="button" class="btn btn-danger font-weight-bold" v-on:click="()=>deleteHability()">-</button>
         </div>
         <div v-if="existe">
           Ya existe
@@ -77,9 +77,11 @@
   }
   .select-institution{
     width: 300px;
+    border-radius: 10px;
   }
   .select-ability{
     width: 200px;
+    border-radius: 10px;
   }
   .container{
     display: flex;
@@ -104,7 +106,7 @@
 <script>
 
 export default {
-  data() {  
+  data() {
     return {
       formData: {
         id_emergency: this.generateId(),
@@ -153,44 +155,48 @@ export default {
       }
     },
     // Guarda los json de la emergencia_habilidad
-    saveEmeAbility: function(id_ability){
-      const formData = {
-        id_ability: id_ability,
+    saveEmeAbility: function(){
+      let formEmergData = {
+        id_ability: this.ability_id,
         id_emergency: this.formData.id_emergency,
       }
-      this.getNameAbility(id_ability).then((response) => {
+      this.global_ability_array.push(formEmergData)
+      
+      this.getNameAbility(this.ability_id).then((response) => {
         if(this.names_abilities.includes(response[0].name_ability)){
           this.existe = true}
-      else{
-        this.names_abilities.push(response[0].name_ability)
-        this.existe = false
-      }
-      this.global_ability_array.push(formData);}
+        else{
+          this.names_abilities.push(response[0].name_ability)
+          this.existe = false
+        }}
       )
     },
-    deleteHability: function(id_ability){
-      this.global_ability_array = this.global_ability_array.filter((element) => element.id_ability != id_ability);
-      this.getNameAbility(id_ability).then((response) => {
+    deleteHability: function(){
+      this.global_ability_array = this.global_ability_array.filter((element) => element.id_ability != this.ability_id);
+      console.log(this.global_ability_array)
+      this.getNameAbility(this.ability_id).then((response) => {
         this.names_abilities = this.names_abilities.filter((element) => element != response[0].name_ability);
       });
     },  
     // Postea la emergencia
-    sendDataEmergency: function () {
-       try {
-         this.$axios.post("/emergencies", this.formData);
-         this.global_ability_array.forEach(async (element) => {
-           let response = await this.$axios.post("/eme-abilities", element);
-           console.log(response);
-         })
-       } catch (error) {
-         console.log("error", error);
-       }
-       this.formData.id_emergency = this.generateId();
-       this.cleanArrays();
+    sendDataEmergency: async function () {
+      try {
+        await this.$axios.post("/emergencies", this.formData);
+        this.global_ability_array.forEach(async (element) => {
+          let response = await this.$axios.post("/eme-abilities", element);
+          console.log(response);
+          this.deleteArrays_reset()
+        })
+      } catch (error) {
+        console.log("error", error);
+      }
+
     },
-    cleanArrays: function(){
-      this.global_ability_array = [];
-      this.names_abilities = [];
+    // Resetea al estado inicial
+    deleteArrays_reset: function(){
+      this.global_ability_array = []
+      this.names_abilities = []
+      this.formData.id_emergency = this.generateId()
     }
   },
 };
