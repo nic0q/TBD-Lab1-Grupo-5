@@ -86,18 +86,20 @@ INSERT INTO "Eme_ability" (id_ability, id_emergency) VALUES (10, 5);
 -- 7. State_task (2)
 -------------------------------------------------------
 
-INSERT INTO "State_task" (state) VALUES (TRUE);
-INSERT INTO "State_task" (state) VALUES (FALSE);
+INSERT INTO "State_task" (state) VALUES ('Creado');
+INSERT INTO "State_task" (state) VALUES ('Iniciado');
+INSERT INTO "State_task" (state) VALUES ('Finalizado');
+
 
 -------------------------------------------------------
 -- 8. Task (5)
 -------------------------------------------------------
 
-INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Limpiar escombros', '1', '2');
-INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Rescatar afectados', '2', '2');
-INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Asistir gente que no sabe nadar', '3', '2');
-INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Alimentar a personas', '4', '2');
-INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Trasladar personas', '5', '2');
+INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Limpiar escombros', '1', '1');
+INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Rescatar afectados', '2', '1');
+INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Asistir gente que no sabe nadar', '3', '1');
+INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Alimentar a personas', '4', '1');
+INSERT INTO "Task" (description, id_emergency, id_state_task) VALUES ('Trasladar personas', '5', '1');
 
 -------------------------------------------------------
 -- 9. Task_ability (5)
