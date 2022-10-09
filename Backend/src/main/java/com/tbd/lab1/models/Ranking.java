@@ -61,4 +61,13 @@ public class Ranking {
     public void setRut_voluntary(String rut_voluntary) {
         this.rut_voluntary = rut_voluntary;
     }
+
+    /**
+     * Retorna un string con la información de un Ranking
+     * @return String
+     */
+    @Override
+    public String toString() {
+        return "Ranking [id_ranking=" + id_ranking + ", id_task=" + id_task + ", rut_voluntary=" + rut_voluntary + "]";
+    }
 }
