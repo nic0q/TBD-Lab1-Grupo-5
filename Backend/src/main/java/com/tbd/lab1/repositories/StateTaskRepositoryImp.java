@@ -103,4 +103,20 @@ public class StateTaskRepositoryImp implements StateTaskRepository{
             return false;
         }
     }
+
+    /**
+     * Método elimina todas las StateTask de la base de datos.
+     * @return boolean
+     */
+    @Override
+    public boolean deleteAllStateTask(){
+        try(Connection conn = sql2o.open()){
+            conn.createQuery("TRUNCATE \"State_task\" CASCADE")
+                    .executeUpdate();
+            return true;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 }

@@ -12,4 +12,6 @@ public interface StateTaskRepository {
     public StateTask createStateTask(StateTask stateTask);
     public boolean editStateTask(StateTask stateTask);
     public boolean deleteStateTask(Integer id);
+
+    public boolean deleteAllStateTask();
 }
