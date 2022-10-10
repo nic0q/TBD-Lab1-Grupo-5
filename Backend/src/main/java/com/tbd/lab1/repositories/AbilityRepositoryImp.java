@@ -104,7 +104,7 @@ public class AbilityRepositoryImp implements AbilityRepository {
 
     /**
      * Método elimina todas las abilities de la base de datos.
-     * @return List<Ability>
+     * @return Integer
      */
     @Override
     public int deleteAllAbility(){
