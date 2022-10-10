@@ -13,11 +13,10 @@ import java.util.List;
  */
 @Repository
 public class TaskAbilityRepositoryImp implements TaskAbilityRepository{
+
     @Autowired
     private Sql2o sql2o;
 
-
-    
     /** 
      * Método que recibe un objeto de tipo TaskAbility y lo inserta en la base de datos.
      * Luego, agrega los atributos especificados en la tabla TaskAbility de la base de datos. 
@@ -40,7 +39,6 @@ public class TaskAbilityRepositoryImp implements TaskAbilityRepository{
         }
     }
 
-    
     /** 
      * Método que retorna una lista de todas las tablas de TaskAbility
      * @return List<TaskAbility>
@@ -56,7 +54,6 @@ public class TaskAbilityRepositoryImp implements TaskAbilityRepository{
         }
     }
 
-    
     /** 
      * Método que recibe un id para que, mediante este, se logre buscar una tabla de TaskAbility en especifico.
      * Retorna la tabla de TaskAbility. Si no se encuentra retorna null.
@@ -75,7 +72,6 @@ public class TaskAbilityRepositoryImp implements TaskAbilityRepository{
         }
     }
 
-    
     /** 
      * Método que recibe un objeto de tipo TaskAbility y lo actualiza en la base de datos.
      * Modifica los atributos especificados en la tabla TaskAbility de la base de datos.
@@ -98,7 +94,6 @@ public class TaskAbilityRepositoryImp implements TaskAbilityRepository{
         }
     }
 
-    
     /** 
      * Método que recibe un id para que, mediante este, se pueda eliminar una tabla de TaskAbility en especifico.
      * Si la tabla existe, la elimina y retorna true, de lo contrario retorna false.
@@ -115,5 +110,4 @@ public class TaskAbilityRepositoryImp implements TaskAbilityRepository{
         }
         return deletedTaskAbility == 1;
     }
-
 }

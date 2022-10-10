@@ -65,7 +65,6 @@ public class InstitutionService {
             return "Institución no encontrada";
         }
     }
-
     
     /** 
      * Método que conecta la ruta /institutions/{id} con el método deleteInstitution().
@@ -81,7 +80,13 @@ public class InstitutionService {
             return "Institución no encontrada";
         }
     }
-
+    
+    /** 
+     * Método que conecta la ruta /institutions con el método deleteAllInstitutions del
+     * repositorio de Institution. Retorna un String indicando si se eliminaron todas las
+     * instituciones.
+     * @return String
+     */
     @DeleteMapping("/institutions")
     public String deleteAllInstitution(){
         int result = institutionRepository.deleteAllInstitution();

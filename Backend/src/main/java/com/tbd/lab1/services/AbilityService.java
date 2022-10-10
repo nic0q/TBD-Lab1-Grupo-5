@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Clase que representa el servicio de habilidades
+ */
 @CrossOrigin
 @RestController
 public class AbilityService {

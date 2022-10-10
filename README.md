@@ -14,7 +14,7 @@ por el equipo 5.
 * [Nicolas Venegas](https://github.com/nicovenegas2)
 
 ## Descripción
-El Laboratorio consiste en desarrollar CRUD utilizando Java y el servicio REST API con Sql2 y crear vistas utilizando VUE + Nuxt.JS para poder realizar ciertos requisitos del Laboratorio N°1 del curso. <br>
+El Laboratorio consiste en desarrollar CRUD utilizando Java y el servicio REST API con Sql2 y crear vistas utilizando VUE.js + Nuxt para poder realizar ciertos requisitos del Laboratorio N°1 del curso. <br>
 
 El repositorio incluye tres carpetas principales:  <br>
 * [Carpeta Backend](https://github.com/nic0q/TBD-Lab1-Grupo-5/tree/master/Backend): Contiene todos los archivos del Backend del proyecto y las clases de las entidades del modelo. 

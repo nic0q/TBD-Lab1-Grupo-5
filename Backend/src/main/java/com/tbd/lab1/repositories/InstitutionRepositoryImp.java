@@ -17,7 +17,6 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
     @Autowired
     private Sql2o sql2o;
 
-    
     /** 
      * Método que retorna una lista de todas las instituciones
      * @return List<Institution>
@@ -33,7 +32,6 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
         }
     }
 
-    
     /** 
      * Método que recibe un id y busca una institucion en base a ese id, en caso de que
      * no exista retorna null.
@@ -52,7 +50,6 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
         }
     }
 
-    
     /** 
      * Métoodo que recibe una institution como objeto y lo inserta en la base de datos,
      * agregando los atributos name y name_coordinator. Si la operación es exitosa retorna
@@ -75,7 +72,6 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
         }
     }
 
-    
     /** 
      * Métoodo que recibe una institution como objeto y lo actualiza en la base de datos,
      * modifica lso atributos name y name_coordinator. Si la operación es exitosa retorna
@@ -98,7 +94,6 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
         }
     }
 
-    
     /** 
      * Método que recibe un id y elimina una institucion en base a ese id, si la operacion tiene
      * exito retorna true y en caso de que no exista retorna false.
@@ -118,6 +113,11 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
         }
     }
 
+    
+    /** 
+     * Método que elimina todas las instituciones de la base de datos.
+     * @return int
+     */
     @Override
     public int deleteAllInstitution(){
         try(Connection conn = sql2o.open()) {

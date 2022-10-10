@@ -17,7 +17,6 @@ public class RankingRepositoryImp implements RankingRepository{
     @Autowired
     private Sql2o sql2o;
 
-    
     /** 
      * Método que retorna una lista de todos los rankings
      * @return List<Ranking>
@@ -33,7 +32,6 @@ public class RankingRepositoryImp implements RankingRepository{
         }
     }
 
-    
     /** 
      * Método que recibe un id y busca un ranking especifico. Si el ranking
      * existe entonces lo retorna, de lo contrario retorna null.
@@ -52,7 +50,6 @@ public class RankingRepositoryImp implements RankingRepository{
         }
     }
 
-    
     /** 
      * Método que recibe un Ranking como obejto y lo inserta en la base de datos.
      * Luego agrega los atributos especificados en la tabla de la base de datos. Retorna
@@ -76,7 +73,6 @@ public class RankingRepositoryImp implements RankingRepository{
         }
     }
 
-    
     /** 
      * Método que recibe un Ranking como objeto y lo actualiza en la base de datos.
      * Luego actualiza los atributos especificados en la tabla de la base de datos. Retorna
@@ -99,7 +95,6 @@ public class RankingRepositoryImp implements RankingRepository{
         }
     }
 
-    
     /** 
      * Método que recibe un id y elimina un ranking especifico. Si el ranking
      * existe entonces lo elimina, de lo contrario retorna false.
@@ -119,6 +114,12 @@ public class RankingRepositoryImp implements RankingRepository{
         }
     }
     
+
+    
+    /** 
+     * Método que elimina todos los rankings de la base de datos
+     * @return boolean
+     */
     @Override
     public boolean deleteAllRanking() {
         try(Connection conn = sql2o.open()){

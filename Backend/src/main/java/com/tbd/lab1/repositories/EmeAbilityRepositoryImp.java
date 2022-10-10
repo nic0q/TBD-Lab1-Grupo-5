@@ -8,11 +8,19 @@ import org.sql2o.Sql2o;
 
 import java.util.List;
 
+/**
+ * Clase que implementa la interfaz EmeAbilityRepository
+ */
 @Repository
 public class EmeAbilityRepositoryImp implements EmeAbilityRepository{
     @Autowired
     private Sql2o sql2o;
-
+    
+    /** 
+     * Método que crea una habilidad de emergencia
+     * @param emeAbility
+     * @return EmeAbility
+     */
     @Override
     public EmeAbility createEmeAbility(EmeAbility emeAbility) {
         try(Connection conn = sql2o.open()){
@@ -27,7 +35,11 @@ public class EmeAbilityRepositoryImp implements EmeAbilityRepository{
             return null;
         }
     }
-
+    
+    /** 
+     * Método que retorna todas las habilidades de emergencia
+     * @return List<EmeAbility>
+     */
     @Override
     public List<EmeAbility> getAllEmeAbilities() {
         try(Connection conn = sql2o.open()){
@@ -38,7 +50,12 @@ public class EmeAbilityRepositoryImp implements EmeAbilityRepository{
             return null;
         }
     }
-
+    
+    /** 
+     * Método que retorna una habilidad de emergencia por id
+     * @param id
+     * @return List<EmeAbility>
+     */
     @Override
     public List<EmeAbility> getEmeAbilityById(int id) {
         try(Connection conn = sql2o.open()){
@@ -50,7 +67,12 @@ public class EmeAbilityRepositoryImp implements EmeAbilityRepository{
             return null;
         }
     }
-
+    
+    /** 
+     * Método que edita una habilidad de emergencia
+     * @param emeAbility
+     * @return boolean
+     */
     @Override
     public boolean editEmeAbility(EmeAbility emeAbility) {
         try(Connection conn = sql2o.open()){
@@ -65,7 +87,12 @@ public class EmeAbilityRepositoryImp implements EmeAbilityRepository{
             return false;
         }
     }
-
+    
+    /** 
+     * Método que elimina una habilidad de emergencia por id
+     * @param id
+     * @return boolean
+     */
     @Override
     public boolean deleteEmeAbility(int id) {
         try(Connection conn = sql2o.open()){
@@ -78,7 +105,11 @@ public class EmeAbilityRepositoryImp implements EmeAbilityRepository{
             return false;
         }
     }
-
+    
+    /** 
+     * Método que elimina todas las habilidades de emergencia
+     * @return int
+     */
     @Override
     public int deleteAllEmeAbility(){
         try(Connection conn = sql2o.open()){
@@ -90,5 +121,4 @@ public class EmeAbilityRepositoryImp implements EmeAbilityRepository{
             return 0;
         }
     }
-
 }

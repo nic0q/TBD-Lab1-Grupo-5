@@ -4,6 +4,9 @@ import com.tbd.lab1.models.EmeAbility;
 
 import java.util.List;
 
+/**
+ * Clase interfaz que representa el repositorio de habilidades de emergencia
+ */
 public interface EmeAbilityRepository {
 
     public EmeAbility createEmeAbility(EmeAbility emeAbility);

@@ -8,7 +8,6 @@ public class TaskAbility {
     private Integer id_task;
     private Integer id_eme_ability;
 
-    
     /** 
      * Obtiene el id (integer) de una TaskAbility
      * @return Integer
@@ -17,7 +16,6 @@ public class TaskAbility {
         return id_task_ability;
     }
 
-    
     /** 
      * Obtiene el id (integer) de una Task
      * @return Integer
@@ -26,7 +24,6 @@ public class TaskAbility {
         return id_task;
     }
 
-    
     /** 
      * Obtiene el id (integer) de una Ability
      * @return Integer
@@ -35,7 +32,6 @@ public class TaskAbility {
         return id_eme_ability;
     }
 
-    
     /** 
      * Modifica el id (integer) de una TaskAbility
      * @param id_task_ability
@@ -44,7 +40,6 @@ public class TaskAbility {
         this.id_task_ability = id_task_ability;
     }
 
-    
     /** 
      * Modifica el id (integer) de una Task
      * @param id_task
@@ -53,7 +48,6 @@ public class TaskAbility {
         this.id_task = id_task;
     }
 
-    
     /** 
      * Modifica el id (integer) de una Ability
      * @param id_eme_ability
@@ -62,7 +56,6 @@ public class TaskAbility {
         this.id_eme_ability = id_eme_ability;
     }
 
-    
     /** 
      * Constructor de la clase TaskAbility, retorna un String con los atributos de la clase TaskAbility
      * @return String

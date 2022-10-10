@@ -86,7 +86,6 @@ public class RankingService {
 
     /** 
      * Método que conecta la ruta /rankings con el método deleteAllRanking()
-     * @param id
      * @return String
      */
     @DeleteMapping("/rankings")

@@ -121,6 +121,10 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
         return deletedVoluntary == 1;
     }
 
+    /** 
+     * Método que elimina todos los voluntarios de la base de datos.
+     * @return int
+     */
     @Override
     public int deleteAllVoluntary() {
         try(Connection conn = sql2o.open()){

@@ -4,7 +4,9 @@ import com.tbd.lab1.models.Ability;
 
 import java.util.List;
 
-
+/**
+ * Clase interfaz que representa el repositorio de habilidades
+ */
 public interface AbilityRepository {
 
     public List<Ability> getAllAbilities();

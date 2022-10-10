@@ -8,7 +8,6 @@ public class Ability {
     private String name_ability;
     private String description_ability;
 
-
     /**
      * Obtiene el id de una Habilidad
      * @return Integer
@@ -24,6 +23,7 @@ public class Ability {
     public void setId_ability(Integer id_ability) {
         this.id_ability = id_ability;
     }
+
     /**
      * Obtiene el nombre de una Habilidad
      * @return String
@@ -31,6 +31,7 @@ public class Ability {
     public String getName_ability() {
         return name_ability;
     }
+
     /**
      * setea el nombre de una habilidad
      * @param name_ability
@@ -38,6 +39,7 @@ public class Ability {
     public void setName_ability(String name_ability) {
         this.name_ability = name_ability;
     }
+
     /**
      * Obtiene la descripcion de una Habilidad
      * @return String
@@ -45,6 +47,7 @@ public class Ability {
     public String getDescription_ability() {
         return description_ability;
     }
+
     /**
      * setea la descripcion de una habilidad
      * @param description_ability
@@ -52,6 +55,7 @@ public class Ability {
     public void setDescription_ability(String description_ability) {
         this.description_ability = description_ability;
     }
+
     /**
      * Obtiene la informacion de una Habilidad
      * @return String
