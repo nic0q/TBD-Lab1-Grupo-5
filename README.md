@@ -3,7 +3,7 @@ Este repositorio contiene todos los archivos relacionados con el Laboratorio N°
 Laboratorio de Taller de Base de Datos (Base de Datos Avanzadas 13317) desarrollado
 por el equipo 5. 
 
-* **IMPORTANTE: Para poder conectarse correctamente a la Base de Datos, se deben colocar el username y password con el que se configuró postgresSQL en el archivo aplication.properties dentro de la carpeta **resources** en **Backend**
+* **IMPORTANTE: Para poder conectarse correctamente a la Base de Datos, se deben colocar el username y password con el que se configuró postgresSQL en el archivo aplication.properties dentro de la carpeta resources en Backend**
 
 ## Integrantes del equipo 5
 * [Vanina Correa](https://github.com/Vanina11)
