@@ -18,4 +18,6 @@ public interface VoluntaryRepository {
   public boolean deleteVoluntary(String rut);
 
   public boolean editVoluntary(Voluntary voluntary);
+
+  public int deleteAllVoluntary();
 }

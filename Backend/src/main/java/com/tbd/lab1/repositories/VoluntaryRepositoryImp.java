@@ -120,4 +120,16 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
         }
         return deletedVoluntary == 1;
     }
+
+    @Override
+    public int deleteAllVoluntary() {
+        try(Connection conn = sql2o.open()){
+            conn.createQuery("TRUNCATE \"Voluntary\" CASCADE")
+                    .executeUpdate().getResult();
+            return 1;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
 }

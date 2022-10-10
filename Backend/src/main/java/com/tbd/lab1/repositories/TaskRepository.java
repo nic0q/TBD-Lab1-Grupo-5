@@ -18,4 +18,6 @@ public interface TaskRepository {
     public boolean deleteTask(int id);
 
     public boolean editTask(Task task);
+
+    public int deleteAllTask();
 }

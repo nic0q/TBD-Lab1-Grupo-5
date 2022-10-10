@@ -118,4 +118,20 @@ public class TaskRepositoryImp implements TaskRepository{
         }
         return deletedTask == 1;
     }
+
+    /**
+     * Método que elimina las tareas de la base de datos
+     * @return int
+     */
+    @Override
+    public int deleteAllTask() {
+        try(Connection conn = sql2o.open()){
+            conn.createQuery("TRUNCATE \"Task\" CASCADE")
+                    .executeUpdate().getResult();
+            return 1;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
 }

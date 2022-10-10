@@ -116,4 +116,21 @@ public class VoluntaryService {
             return "Voluntario no encontrado";
         }
     }
+
+    /**
+     * Método que conecta la ruta /voluntaries con el método deleteAllVoluntary() del
+     * repositorio de Voluntary. Elimina todos los voluntarios de la
+     * base de datos. Retorna un string con el resultado de la operación.
+     * @return String
+     */
+    @DeleteMapping("/voluntaries")
+    @ResponseBody
+    public String deleteAllVoluntary(){
+        int result = voluntaryRepository.deleteAllVoluntary();
+        if (result == 1){
+            return "Voluntarios eliminados";
+        }else{
+            return "Voluntarios no encontrados";
+        }
+    }
 }

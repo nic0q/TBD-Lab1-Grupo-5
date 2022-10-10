@@ -57,4 +57,15 @@ public class TaskService {
             return "Tarea no encontrada";
         }
     }
+
+    @DeleteMapping("/tasks")
+    @ResponseBody
+    public String deleteAllTask(){
+        int result = taskRepository.deleteAllTask();
+        if (result == 1){
+            return "Todas las tareas han sido eliminadas";
+        }else{
+            return "Ha habido un error al intentar borrar todas las tareas";
+        }
+    }
 }
