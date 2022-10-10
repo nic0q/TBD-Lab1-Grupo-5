@@ -18,4 +18,6 @@ public interface RankingRepository {
     public boolean editRanking(Ranking ranking);
     
     public boolean deleteRanking(int id);
+
+    public boolean deleteAllRanking();
 }

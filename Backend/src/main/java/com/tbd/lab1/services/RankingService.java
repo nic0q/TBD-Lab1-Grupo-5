@@ -83,4 +83,19 @@ public class RankingService {
             return "Ranking no encontrado";
         }
     }
+
+    /** 
+     * Método que conecta la ruta /rankings con el método deleteAllRanking()
+     * @param id
+     * @return String
+     */
+    @DeleteMapping("/rankings")
+    public String deleteAllRankings() {
+        boolean result = rankingRepository.deleteAllRanking();
+        if (result) {
+            return "Rankings eliminados";
+        } else {
+            return "Rankings no encontrados";
+        }
+    }
 }
